@@ -1,9 +1,24 @@
+(function(){
+
+var _template = [
+    "<div class='selectBox' ng-click='showSelectModal()'>",
+        "<span class='selected'>{{label}}</span>",
+        "<span class='selectArrow'>&#9660</span>",
+        "<input type='hidden'/>",
+    "</div>"
+    ].join("\n");
+
 angular.module('$selectBox', []).directive('selectBox', function () {
     return {
         restrict: 'E',
-        require: ['ngModel', 'ngData', 'ngSelectedId', 'ngSelectedValue', '?ngTitle', 'ngiItemName', 'ngItemId'],
-        template: '<input id="showed" type="text" ng-click="showSelectModal()" style="cursor:inherit;" readonly />' + '<span id="hidden" type="text" style="display: none;"></span>',
+        require: ['ngModel'
+        // , 'ngData', 'ngSelectedId', 'ngSelectedValue', '?ngTitle', 'ngItemName', 'ngItemId'
+        ],
+        template: _template,
         controller: function ($scope, $element, $attrs, $ionicModal, $parse) {
+
+            $scope.label = ($attrs.ngPlaceholder) ? $attrs.ngPlaceholder : "";
+
             $scope.modal = {};
 
             $scope.showSelectModal = function () {
@@ -27,20 +42,19 @@ angular.module('$selectBox', []).directive('selectBox', function () {
             });
 
             $scope.clickItem = function (item) {
-                var index = $parse($attrs.ngSelectedId);
-                index.assign($scope.$parent, item[$attrs.ngItemId]);
 
                 var value = $parse($attrs.ngSelectedValue);
                 value.assign($scope.$parent, item[$attrs.ngItemName]);
+
+                $scope.label = item[$attrs.ngItemName];
 
                 $scope.closeSelectModal();
             };
         },
         compile: function ($element, $attrs) {
-            var input = $element.find('input');
+            var input = $element.find('input.selected');
             angular.forEach({
                 'name': $attrs.name,
-                'placeholder': $attrs.ngPlaceholder,
                 'ng-model': $attrs.ngSelectedValue
             }, function (value, name) {
                 if (angular.isDefined(value)) {
@@ -48,11 +62,8 @@ angular.module('$selectBox', []).directive('selectBox', function () {
                 }
             });
 
-            var span = $element.find('span');
-            if (angular.isDefined($attrs.ngSelectedId)) {
-                span.attr('ng-model', $attrs.ngSelectedId);
-            }
         }
     };
 });
 //# sourceMappingURL=selectBox.js.map
+})();
