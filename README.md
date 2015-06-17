@@ -3,6 +3,10 @@ ionic-Select-Control
 
 Select Box created with Ionic modal and ionic-list
 
+##Changes
+
+Added Header class support to better integrate with apps
+
 ## Usage
 
 Include as a dependency in your angular module
