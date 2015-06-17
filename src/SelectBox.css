@@ -6,9 +6,10 @@ select-box div.selectBox {
     line-height:30px;
     clear:both;
     color:#888;
+    width:100%;
 }
 select-box span.selected {
-    width:167px;
+    width:95%;
     text-indent:20px;
     border:1px solid #ccc;
     border-right:none;

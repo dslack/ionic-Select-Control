@@ -44,7 +44,7 @@ angular.module('$selectBox', []).directive('selectBox', function () {
             $scope.clickItem = function (item) {
 
                 var value = $parse($attrs.ngSelectedValue);
-                value.assign($scope.$parent, item[$attrs.ngItemName]);
+                value.assign($scope.$parent, item[$attrs.ngItemId]);
 
                 $scope.label = item[$attrs.ngItemName];
 
