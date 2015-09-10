@@ -50,6 +50,10 @@ angular.module('$selectBox', []).directive('selectBox', function () {
 
                 $scope.closeSelectModal();
             };
+
+            $scope.$on('reset', function(){
+                $scope.label =  ($attrs.ngPlaceholder) ? $attrs.ngPlaceholder : "";
+            })
         },
         compile: function ($element, $attrs) {
             var input = $element.find('input.selected');
