@@ -3,6 +3,10 @@ ionic-Select-Control
 
 Select Box created with Ionic modal and ionic-list
 
+## New fork
+**09/28/2015 :** forked from **dslack** to integrate ASAP the 2 pull requests listed here on original **domischenk** project :
+https://github.com/domiSchenk/ionic-Select-Control/pulls
+
 ##Changes
 
 Added Header class support to better integrate with apps
