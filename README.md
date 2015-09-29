@@ -8,7 +8,7 @@ Select Box created with Ionic modal and ionic-list
 **09/28/2015 :** forked from **dslack** to integrate ASAP the 2 pull requests listed here on original **domischenk** project :
 https://github.com/domiSchenk/ionic-Select-Control/pulls
 
-**09/29/2015 :** work in progress, test and handle optionality of ngSelectChanged new attribute.
+**09/29/2015 :** work in progress, need to test and handle optionality of ngSelectChanged new attribute.
 
 ## Changes
 
