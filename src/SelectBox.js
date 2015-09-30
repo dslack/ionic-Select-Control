@@ -11,9 +11,7 @@ var _template = [
 angular.module('$selectBox', []).directive('selectBox', function () {
     return {
         restrict: 'E',
-        require: ['ngModel'
-        // , 'ngData', 'ngSelectedId', 'ngSelectedValue', '?ngTitle', 'ngItemName', 'ngItemId'
-        ],
+        require: ['ngModel' ],
         template: _template,
         controller: function ($scope, $element, $attrs, $ionicModal, $parse) {
 

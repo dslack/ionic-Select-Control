@@ -3,16 +3,11 @@ ionic-Select-Control
 
 Select Box created with Ionic modal and ionic-list
 
-## New fork by postb99 notes
-
-**09/28/2015 :** forked from **dslack** to integrate ASAP the 2 pull requests listed here on original **domischenk** project :
-https://github.com/domiSchenk/ionic-Select-Control/pulls
-
-**09/29/2015 :** work in progress, need to test and handle optionality of ngSelectChanged new attribute.
-
 ## Changes
 
-Added Header class support to better integrate with apps
+Addition of ng-select-changed attribute to hook a function to handle selected value. ( **New fork by postb99, from dslack fork**).
+
+Added Header class support to better integrate with apps.
 
 ## Usage
 
@@ -24,24 +19,24 @@ angular.module('myApp', ['$selectBox'])
 
 ```HTML
   <select-box ng-Selected-Value="selectedValue" 
-          		ng-Selected-Id="selectedId" 
           		ng-Item-Name="name" 
           		ng-Item-Id="id" 
           		ng-title="Select something!" 
           		ng-data="obj" 
-          		ng-placeholder="nothing selected!"></select-box>
+          		ng-placeholder="nothing selected!"
+          		ng-select-changed="displaySelectedValue()"></select-box>
  ```
  
 ## Parameter
 | Name  | Description |
 | :------------- | :------------- |
-|ng-Selected-Value|Selected value|
-|ng-Selected-Id|Index of selected value|
-|ng-data|Object passed to SelectBox|
-|ng-Item-Name|Variable name that contains the value of item|
-|ng-Item-Id|Variable name that contains the id of item|
+|ng-Selected-Value|Variable from scope that will get populated with selected value|
+|ng-data|Scope object passed to SelectBox, format: list of object with two properties, one for label, one for value|
+|ng-Item-Name|Name of label property of scope object passed to SelectBox|
+|ng-Item-Id|Name of value property of scope object passed to SelectBox|
 |ng-placeholder|Placholder when no value is selected|
 |ng-title|Title of SelectBox|
+|ng-select-changed|Optional JS function to execute after item selection|
  
  
  **Example of object passed**
@@ -54,5 +49,5 @@ var obj = [
 ]
  ```
  
-##Codepen
+##Original project Codepen
  http://codepen.io/domiSchenk/pen/cvDkt

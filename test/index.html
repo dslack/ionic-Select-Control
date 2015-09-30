@@ -13,7 +13,7 @@
 
   </head>
   <body ng-controller="MyCtrl">
-      <select-box ng-Selected-Value="myObj"
+      <select-box ng-Selected-Value="selectedValue"
         ng-Item-Name="label"
         ng-Item-Id="key"
         ng-title="List Value"
@@ -32,8 +32,7 @@
         ];
 
         $scope.onSelectChanged = function() {
-          //alert('You changed value to: ' + $scope.selectedItemId);
-          alert('You changed value to: ' + $scope.myObj);
+          alert('You changed value to: ' + $scope.selectedValue);
         };
       });
     </script>
