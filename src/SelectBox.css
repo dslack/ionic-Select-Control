@@ -9,18 +9,20 @@ select-box div.selectBox {
     width:100%;
 }
 select-box span.selected {
-    width:90%;
+    /*width:90%;*/
     text-indent:20px;
     border:1px solid #ccc;
     border-right:none;
     border-top-left-radius:5px;
     border-bottom-left-radius:5px;
-    background:#f6f6f6;
+    /*background:#f6f6f6;*/
     overflow:hidden;
+    padding-right: 5px;
+    display: inline-block;
 }
 select-box span.selectArrow {
     width:30px;
-    border:1px solid #60abf8;
+    border:1px solid #ccc; /*#60abf8;*/
     border-top-right-radius:5px;
     border-bottom-right-radius:5px;
     text-align:center;
@@ -30,8 +32,9 @@ select-box span.selectArrow {
     -moz-user-select: none;
     -o-user-select: none;
     user-select: none;
-    background:black;
-    color:#FFF;
+    /*background:black;*/
+    color:#565656;
+    display: inline-block;
 }
  
 select-box span.selectArrow,span.selected {
