@@ -19,10 +19,10 @@ angular.module('myApp', ['$selectBox'])
 
 ```HTML
   <select-box ng-Selected-Value="selectedValue" 
-          		ng-Item-Name="name" 
+          		ng-Item-Name="label" 
           		ng-Item-Id="id" 
           		ng-title="Select something!" 
-          		ng-data="obj" 
+          		ng-data="mySelectedValue" 
           		ng-placeholder="nothing selected!"
           		ng-select-changed="displaySelectedValue()"></select-box>
  ```
@@ -30,11 +30,11 @@ angular.module('myApp', ['$selectBox'])
 ## Parameter
 | Name  | Description |
 | :------------- | :------------- |
-|ng-Selected-Value|Variable from scope that will get populated with selected value|
+|ng-Selected-Value|Variable from scope that will get populated with selected option value|
 |ng-data|Scope object passed to SelectBox, format: list of object with two properties, one for label, one for value|
-|ng-Item-Name|Name of label property of scope object passed to SelectBox|
-|ng-Item-Id|Name of value property of scope object passed to SelectBox|
-|ng-placeholder|Placholder when no value is selected|
+|ng-Item-Name|Name of property for label, in scope object passed to SelectBox|
+|ng-Item-Id|Name of property for value, in scope object passed to SelectBox|
+|ng-placeholder|Placholder string when no value is selected|
 |ng-title|Title of SelectBox|
 |ng-select-changed|Optional JS function to execute after item selection|
  
@@ -42,10 +42,10 @@ angular.module('myApp', ['$selectBox'])
  **Example of object passed**
  ```javascript
 var obj = [
-  {name: "Value1", id:"1"},
-  {name: "Value2", id:"2"},
-  {name: "Value3", id:"3"},
-  {name: "Value4", id:"4"},
+  {label: "Value1", id:"1"},
+  {label: "Value2", id:"2"},
+  {label: "Value3", id:"3"},
+  {label: "Value4", id:"4"},
 ]
  ```
  
