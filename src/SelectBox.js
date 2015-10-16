@@ -32,11 +32,8 @@ angular.module('$selectBox', []).directive('selectBox', function () {
             $scope.showSelectModal = function () {
                 // TODO keep debugging, doesn't work out of the box
                 // TODO also update test page with a second select item.
-                console.log($scope.ngData);
-                console.log($scope.data);
                 var val = $parse($scope.ngData);
-                $scope.data = val($scope);
-
+                $scope.ngData = val($scope.$parent);
                 $scope.modal.show();
             };
 
@@ -55,7 +52,7 @@ angular.module('$selectBox', []).directive('selectBox', function () {
                 + '</ion-header-bar>'
                 + '<ion-content>'
                 + '<ion-list>'
-                + '<ion-item  ng-click="clickItem(item);' + $scope.ngSelectChanged + '" ng-repeat="item in data" ng-bind-html="item[\'' + $scope.ngItemName + '\']"></ion-item>'
+                + '<ion-item  ng-click="clickItem(item);' + '" ng-repeat="item in ngData" ng-bind-html="item[\'' + $scope.ngItemName + '\']"></ion-item>'
                 + '</ion-list>'
                 + ' </ion-content>'
                 + '</ion-modal-view>', {
@@ -70,6 +67,7 @@ angular.module('$selectBox', []).directive('selectBox', function () {
 
                 $scope.label = item[$scope.ngItemName];
                 $scope.closeSelectModal();
+                $scope.$parent.$eval($scope.ngSelectChanged);
             };
 
             $scope.$on('reset', function(){
