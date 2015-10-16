@@ -30,8 +30,10 @@ angular.module('$selectBox', []).directive('selectBox', function () {
             $scope.modal = {};
 
             $scope.showSelectModal = function () {
-                // TODO keep debugging, doesn't work out of the box
+                // TODO find bug on reopening after selection: broken empty modal
                 // TODO also update test page with a second select item.
+                console.log($scope);
+
                 var val = $parse($scope.ngData);
                 $scope.ngData = val($scope.$parent);
                 $scope.modal.show();
