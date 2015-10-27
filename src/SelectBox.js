@@ -23,19 +23,15 @@ angular.module('$selectBox', []).directive('selectBox', function () {
             ngHeaderClass: "@",
             ngSelectChanged: "@"
         },
-        controller: function ($scope, $element, $scope, $ionicModal, $parse) {
+        controller: function ($scope, $element, $ionicModal, $parse) {
 
             $scope.label = ($scope.ngPlaceholder) ? $scope.ngPlaceholder : "";
 
             $scope.modal = {};
 
             $scope.showSelectModal = function () {
-                // TODO find bug on reopening after selection: broken empty modal
-                // TODO also update test page with a second select item.
-                console.log($scope);
-
                 var val = $parse($scope.ngData);
-                $scope.ngData = val($scope.$parent);
+                $scope.ngDataObjects = val($scope.$parent);
                 $scope.modal.show();
             };
 
@@ -54,7 +50,7 @@ angular.module('$selectBox', []).directive('selectBox', function () {
                 + '</ion-header-bar>'
                 + '<ion-content>'
                 + '<ion-list>'
-                + '<ion-item  ng-click="clickItem(item);' + '" ng-repeat="item in ngData" ng-bind-html="item[\'' + $scope.ngItemName + '\']"></ion-item>'
+                + '<ion-item  ng-click="clickItem(item);' + '" ng-repeat="item in ngDataObjects" ng-bind-html="item[\'' + $scope.ngItemName + '\']"></ion-item>'
                 + '</ion-list>'
                 + ' </ion-content>'
                 + '</ion-modal-view>', {
