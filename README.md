@@ -1,21 +1,35 @@
 ionic-Select-Control
 ====================
 
-Select Box created with Ionic modal and ionic-list
+## Description
 
-## Changes
+This is a customizable select box for ionic framework.
 
-Addition of ng-select-changed attribute to hook a function to handle selected value. ( **New fork by postb99, from dslack fork**).
+## Dependencies
 
-Added Header class support to better integrate with apps.
+This component uses ionic-modal and ionic-list from ionic framework components.
 
-## Usage
+## How to use
 
-Include as a dependency in your angular module
+1. Install with bower:
+
+`bower install ionic-select-box --save`
+
+2. Include as a dependency of your angular module:
 
 ```javascript
-angular.module('myApp', ['$selectBox'])
+angular.module('myApp', ['ionic', $selectBox'])
 ```
+
+3. Include necessary files in your index.html header:
+
+```HTML
+   <link href="lib/selectbox/css/SelectBox.css" rel="stylesheet">
+
+   <script type="text/javascript" src="lib/selectbox/SelectBox.js"></script>
+```
+
+4. Use the select-box directive:
 
 ```HTML
   <select-box ng-Selected-Value="selectedValue" 
@@ -25,9 +39,9 @@ angular.module('myApp', ['$selectBox'])
           		ng-data="mySelectedValue" 
           		ng-placeholder="nothing selected!"
           		ng-select-changed="displaySelectedValue()"></select-box>
- ```
+```
  
-## Parameter
+### Directive parameters
 | Name  | Description |
 | :------------- | :------------- |
 |ng-Selected-Value|Variable from scope that will get populated with selected option value|
@@ -39,7 +53,7 @@ angular.module('myApp', ['$selectBox'])
 |ng-select-changed|Optional JS function to execute after item selection|
  
  
- **Example of object passed**
+ **Example of object for ng-data:**
  ```javascript
 var obj = [
   {label: "Value1", id:"1"},
@@ -48,6 +62,13 @@ var obj = [
   {label: "Value4", id:"4"},
 ]
  ```
+ 
+## History
+ 
+### Version 1.0.0:
+ 
+ - Addition of ng-select-changed attribute to hook a function to handle selected value. (postb99 new fork, from dslack fork).
+ - Added Header class support to better integrate with apps (dslack fork).
  
 ##Original project Codepen
  http://codepen.io/domiSchenk/pen/cvDkt
