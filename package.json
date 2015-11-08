@@ -22,7 +22,7 @@
 	"name": "OSAMES",
 	"url": "https://github.com/OSAMES/ionic-Select-Control"
   },
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/OSAMES/ionic-Select-Control/issues"
   },
