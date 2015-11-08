@@ -64,6 +64,8 @@ var obj = [
  ```
  
 ## History
+
+### Version 1.0.1 and 1.0.2: MIT license added + Readme fix.
  
 ### Version 1.0.0:
  

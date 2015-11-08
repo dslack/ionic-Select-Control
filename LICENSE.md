@@ -1,4 +1,4 @@
-Copyright (c) 2018 OSAMES (Barbara Post, Benjamin Nolmans)
+Copyright (c) 2015 OSAMES (Barbara Post, Benjamin Nolmans)
 
 https://github.com/OSAMES/ionic-Select-Control.git
 
