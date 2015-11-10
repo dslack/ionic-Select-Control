@@ -1,56 +1,16 @@
 <!DOCTYPE html>
 <html ng-app="ionicApp">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title></title>
+    <title>Listing of tests</title>
     <link href="http://code.ionicframework.com/1.1.0/css/ionic.css" rel="stylesheet">
-    <link href="../src/SelectBox.css" rel="stylesheet">
-    <!-- ionic/angularjs js -->
-    <script src="http://code.ionicframework.com/1.1.0/js/ionic.bundle.min.js"></script>
-
-    <script src="../src/SelectBox.js"></script>
-
-  </head>
-  <body ng-controller="MyCtrl">
-      <select-box ng-Selected-Value="selectedValue"
-        ng-Item-Name="label"
-        ng-Item-Id="key"
-        ng-title="List 1"
-        ng-data="list"
-        ng-placeholder="Select"
-        ng-header-class="bar-calm"
-        ng-select-changed="onSelectChanged()"
-        ></select-box>
-
-      <select-box ng-Selected-Value="selectedValue2"
-                  ng-Item-Name="label"
-                  ng-Item-Id="key"
-                  ng-title="List 2"
-                  ng-data="list2"
-                  ng-placeholder="Select2"
-                  ng-header-class="bar-positive"
-                  ng-select-changed="onSelectChanged()"
-              ></select-box>
-
-    <script>
-      angular.module('ionicApp', ['ionic', '$selectBox'])
-      .controller('MyCtrl', function($scope){
-          $scope.list = [
-            {key:"Test", label:"Test Label"},
-            {key:"Test2", label: "Test Label 2"}
-          ];
-
-          $scope.list2 = [
-            {key:"TestA", label:"Test Label A"},
-            {key:"TestB", label: "Test Label B"}
-          ];
-
-        $scope.onSelectChanged = function() {
-          console.log('onSelectChanged');
-          alert('You changed value to: ' + $scope.selectedValue);
-        };
-      });
-    </script>
-  </body>
+</head>
+<body ng-controller="MyCtrl">
+<h1>Available test pages</h1>
+<ul>
+    <li><a href="main.html">Two select box</a></li>
+    <li><a href="translations.html">One select box with angular translate</a></li>
+</ul>
+</body>
 </html>
