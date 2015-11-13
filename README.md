@@ -4,6 +4,7 @@ ionic-Select-Control
 ## Description
 
 This is a customizable select box for ionic framework.
+While the package name is "ionic-select-control", the module name is "$selectBox".
 
 ## Dependencies
 
@@ -13,7 +14,7 @@ This component uses ionic-modal and ionic-list from ionic framework components.
 
 1. Install with bower:
 
-`bower install ionic-select-box --save`
+`bower install ionic-select-control --save`
 
 2. Include as a dependency of your angular module:
 
@@ -62,15 +63,26 @@ var obj = [
   {label: "Value4", id:"4"},
 ]
  ```
- 
+
+## Tests
+
+In "test" root folder, there are some html test pages with different configurations. They don't require a web server to be opened, thus are kept basic.
+Used libraries (ionic bundle, angular translate) are stored in "lib" root folder.
+
 ## History
 
-### Version 1.0.1 and 1.0.2: MIT license added + Readme fix.
+### Current (1.0.3)
+- Test pages reworked.
+- Readme fix and improvement.
+
+### Versions 1.0.1 and 1.0.2:
+
+- MIT license added + Readme fix.
  
 ### Version 1.0.0:
  
  - Addition of ng-select-changed attribute to hook a function to handle selected value. (postb99 new fork, from dslack fork).
  - Added Header class support to better integrate with apps (dslack fork).
  
-##Original project Codepen
- http://codepen.io/domiSchenk/pen/cvDkt
+Original project Codepen
+http://codepen.io/domiSchenk/pen/cvDkt
