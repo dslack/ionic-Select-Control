@@ -17,12 +17,15 @@
 <input type="button" ng-click="setLocale('fr-FR')" value="French">&nbsp;<input type="button"
                                                                                ng-click="setLocale('en-US')"
                                                                                value="English">
-<select-box ng-Selected-Value="selectedValue"
+<br>
+<p>{{model.selectedlang}}</p>
+<br>
+<select-box ng-model="model" ng-Selected-Value="selectedValue"
             ng-Item-Name="label"
             ng-Item-Id="key"
-            ng-title="{{'TITLE' | translate}}"
+            ng-title="{{model.title}}"
             ng-data="list"
-            ng-placeholder="{{'PLACEHOLDER' | translate}}"
+            ng-placeholder="{{model.placeholder}}"
             ng-header-class="bar-calm"
             ng-select-changed="onSelectChanged()"
 ></select-box>
@@ -35,14 +38,16 @@
                 $translateProvider.translations('en-US', {
                     HELLO: 'Hello',
                     TITLE: 'Modal select box',
-                    PLACEHOLDER: 'Do your choice'
+                    PLACEHOLDER: 'Do your choice',
+                    YOU_SELECTED: 'You selected label: '
 
                 });
 
                 $translateProvider.translations('fr-FR', {
                     HELLO: 'Bonjour',
                     TITLE: 'Sélection modale ',
-                    PLACEHOLDER: 'Votre choix...'
+                    PLACEHOLDER: 'Votre choix...',
+                    YOU_SELECTED: 'Vous avez choisi le libellé : '
                 });
 
                 $translateProvider.preferredLanguage("fr-FR");
@@ -58,14 +63,17 @@
                     {key: "TestA", label: "Test Label A"},
                     {key: "TestB", label: "Test Label B"}
                 ];
+                $scope.model = {};
+                $scope.model.title = $translate.instant('TITLE');
+                $scope.model.placeholder = $translate.instant('PLACEHOLDER');
 
                 $scope.onSelectChanged = function () {
                     console.log('onSelectChanged');
-                    alert('You changed value to: ' + $scope.selectedValue);
+                    alert($translate.instant('YOU_SELECTED') + $scope.selectedValue);
                 };
                 $scope.setLocale = function (locale) {
+                    $scope.model.selectedlang = locale;
                     $translate.use(locale);
-                    alert($translate.instant('HELLO'));
                 };
             }]);
 </script>
