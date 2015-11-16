@@ -38,7 +38,7 @@
                 $translateProvider.translations('en-US', {
                     HELLO: 'Hello',
                     TITLE: 'Modal select box',
-                    PLACEHOLDER: 'Do your choice',
+                    PLACEHOLDER: 'Your choice...',
                     YOU_SELECTED: 'You selected label: '
 
                 });
@@ -74,6 +74,12 @@
                 $scope.setLocale = function (locale) {
                     $scope.model.selectedlang = locale;
                     $translate.use(locale);
+                    $scope.model.title = $translate.instant('TITLE');
+                    $scope.model.placeholder = $translate.instant('PLACEHOLDER');
+                    console.log($scope.model.placeholder);
+
+                    // TODO make title and placeholder change when language change.
+                    // Look at this: https://gist.github.com/CMCDragonkai/6282750
                 };
             }]);
 </script>
