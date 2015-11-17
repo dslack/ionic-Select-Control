@@ -78,7 +78,9 @@
                     $scope.model.placeholder = $translate.instant('PLACEHOLDER');
                     console.log($scope.model.placeholder);
 
-                    // TODO make title and placeholder change when language change.
+                    // We're in a click handler so $scope.$apply() cannot be called here ("$rootScope:inprog" error).
+                    // Async call works though. This was just a test !
+                    //$scope.$applyAsync();
                     // Look at this: https://gist.github.com/CMCDragonkai/6282750
                 };
             }]);

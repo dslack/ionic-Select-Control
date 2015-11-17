@@ -30,8 +30,10 @@
                 $scope.modal = {};
 
                 $scope.showSelectModal = function () {
-                var val = $parse($scope.ngData);
-                $scope.ngDataObjects = val($scope.$parent);
+                    console.log($scope.ngTitle);
+                    var val = $parse($scope.ngData);
+                    $scope.ngDataObjects = val($scope.$parent);
+                    $scope.modal = $scope.renderModal;
                     $scope.modal.show();
                 };
 
@@ -43,20 +45,32 @@
                     $scope.modal.remove();
                 });
 
-                $scope.modal = $ionicModal.fromTemplate('<ion-modal-view id="select">'
-                + '<ion-header-bar '+(($scope.ngHeaderClass) ? 'class="'+$scope.ngHeaderClass+'"' : '') +'>'
-                + '<h1 class="title">' + $scope.ngTitle + '</h1>'
-                    + ' <a ng-click="closeSelectModal()" class="button button-icon icon ion-close"></a>'
-                    + '</ion-header-bar>'
-                    + '<ion-content>'
-                    + '<ion-list>'
-                + '<ion-item  ng-click="clickItem(item);' + '" ng-repeat="item in ngDataObjects" ng-bind-html="item[\'' + $scope.ngItemName + '\']"></ion-item>'
-                    + '</ion-list>'
-                    + ' </ion-content>'
-                    + '</ion-modal-view>', {
-                    scope: $scope,
-                    animation: 'slide-in-right'
+                $scope.$watch('ngTitle', function(newValue, oldValue) {
+                    console.log('title changed');
+                    //$scope.modal.remove();
+                    $scope.modal = $scope.renderModal;
                 });
+
+                $scope.$watch('ngPlaceholder', function(newValue, oldValue) {
+                    console.log('placeholder changed');
+                    //$scope.modal.remove();
+                    $scope.modal = $scope.renderModal;
+                });
+
+                $scope.renderModal = $ionicModal.fromTemplate('<ion-modal-view id="select">'
+                        + '<ion-header-bar ' + (($scope.ngHeaderClass) ? 'class="' + $scope.ngHeaderClass + '"' : '') + '>'
+                        + '<h1 class="title">' + $scope.ngTitle + '</h1>'
+                        + ' <a ng-click="closeSelectModal()" class="button button-icon icon ion-close"></a>'
+                        + '</ion-header-bar>'
+                        + '<ion-content>'
+                        + '<ion-list>'
+                        + '<ion-item  ng-click="clickItem(item);' + '" ng-repeat="item in ngDataObjects" ng-bind-html="item[\'' + $scope.ngItemName + '\']"></ion-item>'
+                        + '</ion-list>'
+                        + ' </ion-content>'
+                        + '</ion-modal-view>', {
+                        scope: $scope,
+                        animation: 'slide-in-right'
+                    });
 
                 $scope.clickItem = function (item) {
 
