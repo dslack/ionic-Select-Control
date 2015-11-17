@@ -34,6 +34,7 @@
                     var val = $parse($scope.ngData);
                     $scope.ngDataObjects = val($scope.$parent);
                     $scope.modal = $scope.renderModal;
+                    console.log($scope.modal);
                     $scope.modal.show();
                 };
 
@@ -49,13 +50,18 @@
                     console.log('title changed');
                     //$scope.modal.remove();
                     $scope.modal = $scope.renderModal;
+                    console.log($scope.modal);
+                    //$scope.$parent.$applyAsync();
                 });
 
                 $scope.$watch('ngPlaceholder', function(newValue, oldValue) {
                     console.log('placeholder changed');
                     //$scope.modal.remove();
                     $scope.modal = $scope.renderModal;
+                    //$scope.$parent.$applyAsync();
                 });
+
+                // TODO test why template rendering isn't updated on page
 
                 $scope.renderModal = $ionicModal.fromTemplate('<ion-modal-view id="select">'
                         + '<ion-header-bar ' + (($scope.ngHeaderClass) ? 'class="' + $scope.ngHeaderClass + '"' : '') + '>'
