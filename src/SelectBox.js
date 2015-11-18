@@ -49,19 +49,23 @@
                 $scope.$watch('ngTitle', function(newValue, oldValue) {
                     console.log('title changed');
                     //$scope.modal.remove();
-                    $scope.modal = $scope.renderModal;
-                    console.log($scope.modal);
+                    //$scope.modal = $scope.renderModal;
+                    //console.log($scope.modal);
                     //$scope.$parent.$applyAsync();
+                    //console.log(_template);
                 });
 
                 $scope.$watch('ngPlaceholder', function(newValue, oldValue) {
                     console.log('placeholder changed');
                     //$scope.modal.remove();
-                    $scope.modal = $scope.renderModal;
+                    //$scope.modal = $scope.renderModal;
                     //$scope.$parent.$applyAsync();
                 });
 
                 // TODO test why template rendering isn't updated on page
+                // Something to do with evaluating directive template again,
+                // 'link' function ? But we don't pass here.
+                // Just unclear (also, how to log that template was rendered?).
 
                 $scope.renderModal = $ionicModal.fromTemplate('<ion-modal-view id="select">'
                         + '<ion-header-bar ' + (($scope.ngHeaderClass) ? 'class="' + $scope.ngHeaderClass + '"' : '') + '>'
@@ -92,7 +96,14 @@
                 $scope.label =  ($scope.ngPlaceholder) ? $scope.ngPlaceholder : "";
                 })
             },
+         link: function(scope, element, attributes) {
+             console.log('passed in link');
+             // Doesn't pass here
+            },
         compile: function ($element, $scope) {
+                console.log(_template);
+                console.log('passed in compile');
+
                 var input = $element.find('input.selected');
                 angular.forEach({
                 'name': $scope.name,

@@ -66,6 +66,7 @@
                 $scope.model = {};
                 $scope.model.title = $translate.instant('TITLE');
                 $scope.model.placeholder = $translate.instant('PLACEHOLDER');
+                //$scope.model.displayselectbox = true;
 
                 $scope.onSelectChanged = function () {
                     console.log('onSelectChanged');
@@ -78,10 +79,8 @@
                     $scope.model.placeholder = $translate.instant('PLACEHOLDER');
                     console.log($scope.model.placeholder);
 
-                    // We're in a click handler so $scope.$apply() cannot be called here ("$rootScope:inprog" error).
-                    // Async call works though. This was just a test !
-                    //$scope.$applyAsync();
-                    // Look at this: https://gist.github.com/CMCDragonkai/6282750
+                    //$scope.model.displayselectbox = false;
+                    //$scope.model.displayselectbox = true;
                 };
             }]);
 </script>
