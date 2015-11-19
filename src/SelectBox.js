@@ -8,7 +8,7 @@
         "</div>"
     ].join("\n");
 
-    angular.module('$selectBox', []).directive('selectBox', function () {
+    angular.module('$selectBox', []).directive('selectBox', [ '$compile', function ($compile) {
         return {
             restrict: 'E',
             require: ['ngModel' ],
@@ -23,7 +23,7 @@
             ngHeaderClass: "@",
             ngSelectChanged: "@"
         },
-        controller: function ($scope, $element, $ionicModal, $parse) {
+        controller: function ($scope, $element, $ionicModal, $parse, $compile) {
 
             $scope.label = ($scope.ngPlaceholder) ? $scope.ngPlaceholder : "";
 
@@ -48,18 +48,14 @@
 
                 $scope.$watch('ngTitle', function(newValue, oldValue) {
                     console.log('title changed');
-                    //$scope.modal.remove();
-                    //$scope.modal = $scope.renderModal;
-                    //console.log($scope.modal);
-                    //$scope.$parent.$applyAsync();
-                    //console.log(_template);
+                    console.log(($compile(_template)($scope)));
+                    // TODO .innerHTML gives undefined while compilation result seems to be a DOM element, but it's the way to go !!!!
+                    $element.html($compile(_template)($scope).innerHTML);
                 });
 
                 $scope.$watch('ngPlaceholder', function(newValue, oldValue) {
                     console.log('placeholder changed');
-                    //$scope.modal.remove();
-                    //$scope.modal = $scope.renderModal;
-                    //$scope.$parent.$applyAsync();
+                    $element.html($compile(_template)($scope).innerHTML);
                 });
 
                 // TODO test why template rendering isn't updated on page
@@ -96,12 +92,8 @@
                 $scope.label =  ($scope.ngPlaceholder) ? $scope.ngPlaceholder : "";
                 })
             },
-         link: function(scope, element, attributes) {
-             console.log('passed in link');
-             // Doesn't pass here
-            },
         compile: function ($element, $scope) {
-                console.log(_template);
+
                 console.log('passed in compile');
 
                 var input = $element.find('input.selected');
@@ -116,6 +108,6 @@
 
             }
         };
-    });
+    }]);
 //# sourceMappingURL=selectBox.js.map
 })();
