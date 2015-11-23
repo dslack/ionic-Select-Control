@@ -48,20 +48,17 @@
 
                 $scope.$watch('ngTitle', function(newValue, oldValue) {
                     console.log('title changed');
-                    console.log(($compile(_template)($scope)));
+
+                    //console.log(($compile(_template)($scope)));
+                    //console.log(Object.prototype.toString.call(($compile(_template)($scope))));
                     // TODO .innerHTML gives undefined while compilation result seems to be a DOM element, but it's the way to go !!!!
-                    $element.html($compile(_template)($scope).innerHTML);
+                    //$element.html($compile(_template)($scope).innerHTML);
+                    //console.log($element);
                 });
 
                 $scope.$watch('ngPlaceholder', function(newValue, oldValue) {
-                    console.log('placeholder changed');
-                    $element.html($compile(_template)($scope).innerHTML);
+                    angular.element($element.children()[0]).children()[0].innerText = newValue;
                 });
-
-                // TODO test why template rendering isn't updated on page
-                // Something to do with evaluating directive template again,
-                // 'link' function ? But we don't pass here.
-                // Just unclear (also, how to log that template was rendered?).
 
                 $scope.renderModal = $ionicModal.fromTemplate('<ion-modal-view id="select">'
                         + '<ion-header-bar ' + (($scope.ngHeaderClass) ? 'class="' + $scope.ngHeaderClass + '"' : '') + '>'
