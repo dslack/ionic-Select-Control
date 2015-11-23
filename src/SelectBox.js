@@ -49,11 +49,11 @@
                 $scope.$watch('ngTitle', function(newValue, oldValue) {
                     console.log('title changed');
 
-                    //console.log(($compile(_template)($scope)));
-                    //console.log(Object.prototype.toString.call(($compile(_template)($scope))));
-                    // TODO .innerHTML gives undefined while compilation result seems to be a DOM element, but it's the way to go !!!!
-                    //$element.html($compile(_template)($scope).innerHTML);
-                    //console.log($element);
+                    console.log($scope.renderModal);
+                    // TODO use $scope.renderModal.modalEl which is:
+                    //innerHTML: "<div class="modal-backdrop-bg"></div><div class="modal-wrapper" ng-transclude=""><ion-modal-view id="select" class="modal"><ion-header-bar class="bar-calm bar bar-header disable-user-behavior"><h1 class="title">Sélection modale </h1> <a ng-click="closeSelectModal()" class="button button-icon icon ion-close"></a></ion-header-bar><ion-content class="scroll-content ionic-scroll has-header"><div class="scroll"><ion-list class="disable-user-behavior"><div class="list"><!-- ngRepeat: item in ngDataObjects --></div></ion-list> </div><div class="scroll-bar scroll-bar-v"><div class="scroll-bar-indicator scroll-bar-fade-out"></div></div></ion-content></ion-modal-view></div>"
+
+                    // and update title html element as below
                 });
 
                 $scope.$watch('ngPlaceholder', function(newValue, oldValue) {
