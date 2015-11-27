@@ -5,7 +5,10 @@
         "<span class='selected'>{{label}}</span>",
         "<span class='selectArrow'>&#9660</span>",
         "<input type='hidden'/>",
-        "</div>"
+        "</div>",
+        "<script type='text/ng-template' id='selectBoxModalTemplate'>",
+        "<div>TEST</div>",
+        "</script>"
     ].join("\n");
     
     var _modalTemplate = ["<ion-modal-view id='select'>",
@@ -66,8 +69,14 @@
 
                     // and update title html element as below
                     
-                    var newhtml = $compile(_modalTemplate)($scope);
-                    //console.log(newhtml);
+                   // var newhtml = $compile(_modalTemplate)($scope);
+                    //console.log(newhtml[0].innerHTML);
+
+                    var eltToUpdate = null;
+                    // TODO console.log($scope.renderModal.modalEl.children());
+                    // angular.element($element.children()[0]).children()[0].innerText = newValue;
+
+                    // TODO use ng-include="'selectBoxModalTemplate'" to include template by ID
                 });
 
                 $scope.$watch('ngPlaceholder', function(newValue, oldValue) {
