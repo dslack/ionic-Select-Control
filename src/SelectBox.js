@@ -5,25 +5,9 @@
         "<span class='selected'>{{label}}</span>",
         "<span class='selectArrow'>&#9660</span>",
         "<input type='hidden'/>",
-        "</div>",
-        "<script type='text/ng-template' id='selectBoxModalTemplate'>",
-        "<div>TEST</div>",
-        "</script>"
+        "</div>"
     ].join("\n");
     
-    var _modalTemplate = ["<ion-modal-view id='select'>",
-        "<ion-header-bar class='{{ngHeaderClass}}'>",
-        "<h1 class='title'>{{ngTitle}}</h1>",
-        " <a ng-click='closeSelectModal()' class='button button-icon icon ion-close'></a>",
-        "</ion-header-bar>",
-        "<ion-content>",
-        "<ion-list>",
-        "<ion-item  ng-click='clickItem(item);" + "' ng-repeat='item in ngDataObjects' ng-bind-html='item[\"{{ngItemName}}\"]'></ion-item>",
-        "</ion-list>",
-        " </ion-content>",
-        "</ion-modal-view>"
-    ].join("\n");
-
     angular.module('$selectBox', []).directive('selectBox', [ '$compile', function ($compile) {
         return {
             restrict: 'E',
@@ -44,74 +28,91 @@
             $scope.label = ($scope.ngPlaceholder) ? $scope.ngPlaceholder : "";
             $scope.modal = {};
 
-                $scope.showSelectModal = function () {
-                    var val = $parse($scope.ngData);
-                    $scope.ngDataObjects = val($scope.$parent);
-                    $scope.ngHeaderClass = ($scope.ngHeaderClass) ? $scope.ngHeaderClass : "";
-                    $scope.modal = $scope.renderModal;
-                    $scope.modal.show();
-                };
+            $scope.showSelectModal = function () {
+                var val = $parse($scope.ngData);
+                $scope.ngDataObjects = val($scope.$parent);
+                $scope.ngHeaderClass = ($scope.ngHeaderClass) ? $scope.ngHeaderClass : "";
+                $scope.renderModal();
+                $scope.modal.show();
+            };
 
-                $scope.closeSelectModal = function () {
-                    $scope.modal.hide();
-                };
+            $scope.closeSelectModal = function () {
+                $scope.modal.hide();
+            };
 
-                $scope.$on('$destroy', function (id) {
-                    $scope.modal.remove();
+            $scope.$on('$destroy', function (id) {
+                $scope.modal.remove();
+            });
+
+            $scope.refreshModal = function () {
+            /*    if(!$scope.renderModalTimeout){
+                    $scope.renderModalTimeout = setTimeout(
+                        function() {
+                            $scope.renderModal();
+                            console.log('Modal refreshed');
+                            clearTimeout($scope.renderModalTimeout);
+                        }, 100);
+                } */
+            };
+
+            $scope.$watch('ngTitle', function (newValue, oldValue) {
+                console.log('title changed');
+                $scope.refreshModal();
+            });
+
+            $scope.$watch('ngHeaderClass', function (newValue, oldValue) {
+                console.log('header class changed');
+                $scope.refreshModal();
+            });
+
+            $scope.$watch('ngData', function (newValue, oldValue) {
+                console.log('data changed');
+                var val = $parse($scope.ngData);
+                $scope.ngDataObjects = val($scope.$parent);
+                $scope.refreshModal();
+            });
+
+            $scope.$watch('ngItemName', function (newValue, oldValue) {
+                console.log('item name changed');
+                $scope.refreshModal();
+            });
+
+            $scope.$watch('ngPlaceholder', function (newValue, oldValue) {
+                angular.element($element.children()[0]).children()[0].innerText = newValue;
+            });
+
+            $scope.renderModal = function () {
+                $scope.modal = $ionicModal.fromTemplate('<ion-modal-view id="select">'
+                    + '<ion-header-bar class="' + $scope.ngHeaderClass + '">'
+                    + '<h1 class="title">' + $scope.ngTitle + '</h1>'
+                    + ' <a ng-click="closeSelectModal()" class="button button-icon icon ion-close"></a>'
+                    + '</ion-header-bar>'
+                    + '<ion-content>'
+                    + '<ion-list>'
+                    + '<ion-item  ng-click="clickItem(item);' + '" ng-repeat="item in ngDataObjects" ng-bind-html="item[\'' + $scope.ngItemName + '\']"></ion-item>'
+                    + '</ion-list>'
+                    + ' </ion-content>'
+                    + '</ion-modal-view>', {
+                    scope: $scope,
+                    animation: 'slide-in-right'
                 });
+            };
 
-                $scope.$watch('ngTitle', function(newValue, oldValue) {
-                    console.log('title changed');
 
-                    //console.log($scope.renderModal);
-                    // TODO use $scope.renderModal.modalEl which is:
-                    //innerHTML: "<div class="modal-backdrop-bg"></div><div class="modal-wrapper" ng-transclude=""><ion-modal-view id="select" class="modal"><ion-header-bar class="bar-calm bar bar-header disable-user-behavior"><h1 class="title">Sélection modale </h1> <a ng-click="closeSelectModal()" class="button button-icon icon ion-close"></a></ion-header-bar><ion-content class="scroll-content ionic-scroll has-header"><div class="scroll"><ion-list class="disable-user-behavior"><div class="list"><!-- ngRepeat: item in ngDataObjects --></div></ion-list> </div><div class="scroll-bar scroll-bar-v"><div class="scroll-bar-indicator scroll-bar-fade-out"></div></div></ion-content></ion-modal-view></div>"
+            $scope.clickItem = function (item) {
 
-                    // and update title html element as below
-                    
-                   // var newhtml = $compile(_modalTemplate)($scope);
-                    //console.log(newhtml[0].innerHTML);
+            var value = $parse($scope.ngSelectedValue);
+            value.assign($scope.$parent, item[$scope.ngItemId]);
 
-                    var eltToUpdate = null;
-                    // TODO console.log($scope.renderModal.modalEl.children());
-                    // angular.element($element.children()[0]).children()[0].innerText = newValue;
+            $scope.label = item[$scope.ngItemName];
+                $scope.closeSelectModal();
+            $scope.$parent.$eval($scope.ngSelectChanged);
+            };
 
-                    // TODO use ng-include="'selectBoxModalTemplate'" to include template by ID
-                });
-
-                $scope.$watch('ngPlaceholder', function(newValue, oldValue) {
-                    angular.element($element.children()[0]).children()[0].innerText = newValue;
-                });
-
-                $scope.renderModal = $ionicModal.fromTemplate('<ion-modal-view id="select">'
-                        + '<ion-header-bar class="' + $scope.ngHeaderClass + '">'
-                        + '<h1 class="title">' + $scope.ngTitle + '</h1>'
-                        + ' <a ng-click="closeSelectModal()" class="button button-icon icon ion-close"></a>'
-                        + '</ion-header-bar>'
-                        + '<ion-content>'
-                        + '<ion-list>'
-                        + '<ion-item  ng-click="clickItem(item);' + '" ng-repeat="item in ngDataObjects" ng-bind-html="item[\'' + $scope.ngItemName + '\']"></ion-item>'
-                        + '</ion-list>'
-                        + ' </ion-content>'
-                        + '</ion-modal-view>', {
-                        scope: $scope,
-                        animation: 'slide-in-right'
-                    });
-
-                $scope.clickItem = function (item) {
-
-                var value = $parse($scope.ngSelectedValue);
-                value.assign($scope.$parent, item[$scope.ngItemId]);
-
-                $scope.label = item[$scope.ngItemName];
-                    $scope.closeSelectModal();
-                $scope.$parent.$eval($scope.ngSelectChanged);
-                };
-
-                $scope.$on('reset', function(){
-                $scope.label =  ($scope.ngPlaceholder) ? $scope.ngPlaceholder : "";
-                })
-            },
+            $scope.$on('reset', function(){
+            $scope.label =  ($scope.ngPlaceholder) ? $scope.ngPlaceholder : "";
+            })
+        },
         compile: function ($element, $scope) {
                 var input = $element.find('input.selected');
                 angular.forEach({
