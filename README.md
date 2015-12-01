@@ -19,7 +19,7 @@ This component uses ionic-modal and ionic-list from ionic framework components.
 2. Include as a dependency of your angular module:
 
 ```javascript
-angular.module('myApp', ['ionic', $selectBox'])
+angular.module('myApp', ['ionic', '$selectBox'])
 ```
 
 3. Include necessary files in your index.html header:
