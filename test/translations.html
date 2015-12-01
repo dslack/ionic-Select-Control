@@ -66,21 +66,16 @@
                 $scope.model = {};
                 $scope.model.title = $translate.instant('TITLE');
                 $scope.model.placeholder = $translate.instant('PLACEHOLDER');
-                //$scope.model.displayselectbox = true;
 
                 $scope.onSelectChanged = function () {
-                    console.log('onSelectChanged');
-                    alert($translate.instant('YOU_SELECTED') + $scope.selectedValue);
+                    console.log($translate.instant('YOU_SELECTED') + $scope.selectedValue);
                 };
                 $scope.setLocale = function (locale) {
                     $scope.model.selectedlang = locale;
                     $translate.use(locale);
                     $scope.model.title = $translate.instant('TITLE');
                     $scope.model.placeholder = $translate.instant('PLACEHOLDER');
-                    console.log($scope.model.placeholder);
 
-                    //$scope.model.displayselectbox = false;
-                    //$scope.model.displayselectbox = true;
                 };
             }]);
 </script>
