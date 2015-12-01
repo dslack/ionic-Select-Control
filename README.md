@@ -71,7 +71,8 @@ Used libraries (ionic bundle, angular translate) are stored in "lib" root folder
 
 ## History
 
-### Current (1.0.3)
+### Version 1.1.0:
+- Component properly refreshes when scope changes.
 - Test pages reworked.
 - Readme fix and improvement.
 

@@ -68,18 +68,14 @@
                 $scope.model.placeholder = $translate.instant('PLACEHOLDER');
 
                 $scope.onSelectChanged = function () {
-                    console.log('onSelectChanged');
-                    alert($translate.instant('YOU_SELECTED') + $scope.selectedValue);
+                    console.log($translate.instant('YOU_SELECTED') + $scope.selectedValue);
                 };
                 $scope.setLocale = function (locale) {
                     $scope.model.selectedlang = locale;
                     $translate.use(locale);
                     $scope.model.title = $translate.instant('TITLE');
                     $scope.model.placeholder = $translate.instant('PLACEHOLDER');
-                    console.log($scope.model.placeholder);
 
-                    // TODO make title and placeholder change when language change.
-                    // Look at this: https://gist.github.com/CMCDragonkai/6282750
                 };
             }]);
 </script>
