@@ -71,6 +71,9 @@ Used libraries (ionic bundle, angular translate) are stored in "lib" root folder
 
 ## History
 
+### Version 1.2.0:
+- Fixed javascript error when destroying scope without opening modal ($scope.modal undefined).
+
 ### Version 1.1.0:
 - Component properly refreshes when scope changes.
 - Test pages reworked.
