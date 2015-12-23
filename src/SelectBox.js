@@ -62,7 +62,8 @@
                         + ' </ion-content>'
                         + '</ion-modal-view>', {
                         scope: $scope,
-                        animation: 'slide-in-right'
+                        animation: 'slide-in-right',
+                        backdropClickToClose : false
                     });
                 };
 

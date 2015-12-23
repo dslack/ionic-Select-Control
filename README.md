@@ -9,6 +9,7 @@ While the package name is "ionic-select-control", the module name is "$selectBox
 ## Dependencies
 
 This component uses ionic-modal and ionic-list from ionic framework components.
+Clicking outside the modal won't close it.
 
 ## How to use
 
@@ -70,6 +71,9 @@ In "test" root folder, there are some html test pages with different configurati
 Used libraries (ionic bundle, angular translate) are stored in "lib" root folder.
 
 ## History
+
+### Version 1.3.0:
+- Disallow modal closing when clicking outside the modal.
 
 ### Version 1.2.0:
 - Fixed javascript error when destroying scope without opening modal ($scope.modal undefined).
