@@ -72,6 +72,9 @@ Used libraries (ionic bundle, angular translate) are stored in "lib" root folder
 
 ## History
 
+### Version 1.4.0:
+- Added Gulp tasks to minify and uglify source and stylesheet.
+
 ### Version 1.3.0:
 - Disallow modal closing when clicking outside the modal.
 
