@@ -9,6 +9,7 @@
     ].join("\n");
 
     angular.module('$selectBox', []).directive('selectBox', [ '$compile', function ($compile) {
+
         return {
             restrict: 'E',
             require: ['ngModel' ],
@@ -23,7 +24,7 @@
                 ngHeaderClass: "@",
                 ngSelectChanged: "@"
             },
-            controller: function ($scope, $element, $ionicModal, $parse, $compile) {
+            controller: ['$scope', '$element', '$ionicModal', '$parse', function ($scope, $element, $ionicModal, $parse) {
 
                 $scope.label = ($scope.ngPlaceholder) ? $scope.ngPlaceholder : "";
 
@@ -79,8 +80,8 @@
                 $scope.$on('reset', function(){
                     $scope.label =  ($scope.ngPlaceholder) ? $scope.ngPlaceholder : "";
                 })
-            },
-            compile: function ($element, $scope) {
+            }],
+            compile: ['$element', '$scope', function ($element, $scope) {
                 var input = $element.find('input.selected');
                 angular.forEach({
                     'name': $scope.name,
@@ -90,7 +91,7 @@
                         input.attr(name, value);
                     }
                 });
-            }
+            }]
         };
     }]);
 //# sourceMappingURL=selectBox.js.map
