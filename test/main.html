@@ -38,18 +38,17 @@
     angular.module('ionicApp', ['ionic', '$selectBox'])
             .controller('MyCtrl', function ($scope) {
                 $scope.list = [
-                    {key: "Test", label: "Test Label"},
-                    {key: "Test2", label: "Test Label 2"}
+                    {key: "Test", label: "(Test) Test Label"},
+                    {key: "Test2", label: "(Test2) Test Label 2"}
                 ];
 
                 $scope.list2 = [
-                    {key: "TestA", label: "Test Label A"},
-                    {key: "TestB", label: "Test Label B"}
+                    {key: "TestA", label: "(TestA) Test Label A"},
+                    {key: "TestB", label: "(TestB) Test Label B"}
                 ];
 
                 $scope.onSelectChanged = function () {
                     console.log('onSelectChanged');
-                    alert('You changed value to: ' + $scope.selectedValue);
                 };
             });
 </script>

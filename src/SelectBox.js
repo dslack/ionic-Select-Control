@@ -8,7 +8,7 @@
         "</div>"
     ].join("\n");
 
-    angular.module('$selectBox', []).directive('selectBox', [ '$compile', function ($compile) {
+    angular.module('$selectBox', []).directive('selectBox', function () {
 
         return {
             restrict: 'E',
@@ -81,7 +81,7 @@
                     $scope.label =  ($scope.ngPlaceholder) ? $scope.ngPlaceholder : "";
                 })
             }],
-            compile: ['$element', '$scope', function ($element, $scope) {
+            compile: function ($element, $scope) {
                 var input = $element.find('input.selected');
                 angular.forEach({
                     'name': $scope.name,
@@ -91,8 +91,8 @@
                         input.attr(name, value);
                     }
                 });
-            }]
+            }
         };
-    }]);
+    });
 //# sourceMappingURL=selectBox.js.map
 })();
