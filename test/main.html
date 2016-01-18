@@ -14,7 +14,7 @@
 
 </head>
 <body ng-controller="MyCtrl">
-<select-box ng-Selected-Value="selectedValue"
+<select-box ng-Selected-Value="select.selectedValue"
             ng-Item-Name="label"
             ng-Item-Id="key"
             ng-title="List 1"
@@ -24,7 +24,7 @@
             ng-select-changed="onSelectChanged()"
 ></select-box>
 
-<select-box ng-Selected-Value="selectedValue2"
+<select-box ng-Selected-Value="select.selectedValue2"
             ng-Item-Name="label"
             ng-Item-Id="key"
             ng-title="List 2"
@@ -33,6 +33,9 @@
             ng-header-class="bar-positive"
             ng-select-changed="onSelectChanged()"
 ></select-box>
+
+<input type="button" ng-click="resetSelectBox()" value="Reset selections">&nbsp;
+<input type="button" ng-click="selectFirstItems()" value="Select first item of each select box">
 
 <script>
     angular.module('ionicApp', ['ionic', '$selectBox'])
@@ -47,8 +50,22 @@
                     {key: "TestB", label: "(TestB) Test Label B"}
                 ];
 
+                $scope.select = {};
+
                 $scope.onSelectChanged = function () {
-                    console.log('onSelectChanged');
+                    console.log('onSelectChanged, current scope:', $scope);
+                    // Why the heck do I still get previous value printed????
+                    console.log('onSelectChanged, current selections: ', $scope.select.selectedValue, ' ', $scope.select.selectedValue2);
+                };
+
+                $scope.resetSelectBox = function () {
+                    $scope.select.selectedValue = null;
+                    $scope.select.selectedValue2 = null;
+                };
+
+                $scope.selectFirstItems = function () {
+                    $scope.select.selectedValue = 'Test';
+                    $scope.select.selectedValue2 = 'TestA';
                 };
             });
 </script>

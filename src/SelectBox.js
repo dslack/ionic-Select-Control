@@ -15,7 +15,7 @@
             require: ['ngModel' ],
             template: _template,
             scope: {
-                ngSelectedValue: "@",
+                ngSelectedValue: "=",
                 ngTitle: "@",
                 ngItemName: "@",
                 ngItemId: "@",
@@ -69,9 +69,7 @@
                 };
 
                 $scope.clickItem = function (item) {
-                    var value = $parse($scope.ngSelectedValue);
-                    value.assign($scope.$parent, item[$scope.ngItemId]);
-
+                    $scope.ngSelectedValue = item[$scope.ngItemId];
                     $scope.label = item[$scope.ngItemName];
                     $scope.closeSelectModal();
                     $scope.$parent.$eval($scope.ngSelectChanged);
