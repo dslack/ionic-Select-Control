@@ -14,7 +14,7 @@
 
 </head>
 <body ng-controller="MyCtrl">
-<select-box ng-Selected-Value="select.selectedValue"
+<select-box ng-Selected-Value="selectedValue"
             ng-Item-Name="label"
             ng-Item-Id="key"
             ng-title="List 1"
@@ -24,7 +24,7 @@
             ng-select-changed="onSelectChanged()"
 ></select-box>
 
-<select-box ng-Selected-Value="select.selectedValue2"
+<select-box ng-Selected-Value="selectedValue2"
             ng-Item-Name="label"
             ng-Item-Id="key"
             ng-title="List 2"
@@ -55,17 +55,17 @@
                 $scope.onSelectChanged = function () {
                     console.log('onSelectChanged, current scope:', $scope);
                     // Why the heck do I still get previous value printed????
-                    console.log('onSelectChanged, current selections: ', $scope.select.selectedValue, ' ', $scope.select.selectedValue2);
+                    //console.log('onSelectChanged, current selections: ', $scope.selectedValue, ' ', $scope.selectedValue2);
                 };
 
                 $scope.resetSelectBox = function () {
-                    $scope.select.selectedValue = null;
-                    $scope.select.selectedValue2 = null;
+                    $scope.selectedValue = null;
+                    $scope.selectedValue2 = null;
                 };
 
                 $scope.selectFirstItems = function () {
-                    $scope.select.selectedValue = 'Test';
-                    $scope.select.selectedValue2 = 'TestA';
+                    $scope.selectedValue = 'Test';
+                    $scope.selectedValue2 = 'TestA';
                 };
             });
 </script>

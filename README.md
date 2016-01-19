@@ -50,7 +50,7 @@ angular.module('myApp', ['ionic', '$selectBox'])
 |ng-data|Scope object passed to SelectBox, format: list of object with two properties, one for label, one for value|
 |ng-Item-Name|Name of property for label, in scope object passed to SelectBox|
 |ng-Item-Id|Name of property for value, in scope object passed to SelectBox|
-|ng-placeholder|Placholder string when no value is selected|
+|ng-placeholder|Placeholder string when no value is selected|
 |ng-title|Title of SelectBox|
 |ng-select-changed|Optional JS function to execute after item selection|
  
@@ -71,6 +71,9 @@ In "test" root folder, there are some html test pages with different configurati
 Used libraries (ionic bundle, angular translate) are stored in "lib" root folder.
 
 ## History
+
+### Version 1.5.0:
+- Added ability to clear selection when setting null value to scope object associated to "ng-Selected-Value" selectBox attribute.
 
 ### Version 1.4.0:
 - Added Gulp tasks to minify and uglify source and stylesheet.

@@ -26,7 +26,8 @@
             },
             controller: ['$scope', '$element', '$ionicModal', '$parse', function ($scope, $element, $ionicModal, $parse) {
 
-                $scope.label = ($scope.ngPlaceholder) ? $scope.ngPlaceholder : "";
+                $scope.ngPlaceholder = ($scope.ngPlaceholder) ? $scope.ngPlaceholder : '';
+                $scope.label = $scope.ngPlaceholder;
 
                 $scope.showSelectModal = function () {
                     var val = $parse($scope.ngData);
@@ -48,6 +49,12 @@
 
                 $scope.$watch('ngPlaceholder', function (newValue, oldValue) {
                     angular.element($element.children()[0]).children()[0].innerText = newValue;
+                });
+
+                $scope.$watch('ngSelectedValue', function (newValue, oldValue) {
+                    //console.log('selected value changed from ', oldValue, ' to ', newValue);
+                    if(!newValue)
+                        $scope.setPlaceholderLabel($scope.ngPlaceholder);
                 });
 
                 $scope.renderModal = function () {
@@ -75,9 +82,14 @@
                     $scope.$parent.$eval($scope.ngSelectChanged);
                 };
 
+                $scope.setPlaceholderLabel = function(label) {
+                    $scope.label =  label;
+                };
+
                 $scope.$on('reset', function(){
-                    $scope.label =  ($scope.ngPlaceholder) ? $scope.ngPlaceholder : "";
-                })
+                    $scope.setPlaceholderLabel($scope.ngPlaceholder);
+                    $scope.ngSelectedValue = null;
+                });
             }],
             compile: function ($element, $scope) {
                 var input = $element.find('input.selected');
