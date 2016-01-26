@@ -22,7 +22,7 @@
                 ngData: "@",
                 ngPlaceholder: "@",
                 ngHeaderClass: "@",
-                ngSelectChanged: "&"
+                ngSelectChanged: "="
             },
             controller: ['$scope', '$element', '$ionicModal', '$parse', function ($scope, $element, $ionicModal, $parse) {
 

@@ -41,6 +41,8 @@
 <br/>
 <br/>
 <input id="chat" name="chat" ng-model="afterSelect" style="width:300px"/>
+<br/>
+<input id="chat2" name="chat2" ng-model="afterSelect2" style="width:300px"/>
 
 <br/>
 <br/>
@@ -67,7 +69,7 @@
 
                 $scope.onSelect2Changed = function () {
                     //console.log('onSelect2Changed, current scope:', $scope);
-                    $scope.afterSelect = "New selection for second SelectBox: " + $scope.selectedValue2;
+                    $scope.afterSelect2 = "New selection for second SelectBox: " + $scope.selectedValue2;
                 };
 
                 $scope.resetSelectBox = function () {
