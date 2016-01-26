@@ -21,8 +21,11 @@
             ng-data="list"
             ng-placeholder="Select"
             ng-header-class="bar-calm"
-            ng-select-changed="onSelectChanged()"
-></select-box>
+            ng-select-changed="onSelectChanged(selectedValue)"
+></select-box> Selected value :
+<input id="firstSelection" name="firstSelection" ng-model = "selectedValue"/>
+<br/>
+<br/>
 
 <select-box ng-Selected-Value="selectedValue2"
             ng-Item-Name="label"
@@ -31,9 +34,16 @@
             ng-data="list2"
             ng-placeholder="Select2"
             ng-header-class="bar-positive"
-            ng-select-changed="onSelectChanged()"
-></select-box>
+            ng-select-changed="onSelect2Changed()"
+></select-box> Selected value :
+<input id="secondSelection" name="secondSelection" ng-model = "selectedValue2"/>
 
+<br/>
+<br/>
+<input id="chat" name="chat" ng-model="afterSelect" style="width:300px"/>
+
+<br/>
+<br/>
 <input type="button" ng-click="resetSelectBox()" value="Reset selections">&nbsp;
 <input type="button" ng-click="selectFirstItems()" value="Select first item of each select box">
 
@@ -41,21 +51,23 @@
     angular.module('ionicApp', ['ionic', '$selectBox'])
             .controller('MyCtrl', function ($scope) {
                 $scope.list = [
-                    {key: "Test", label: "(Test) Test Label"},
-                    {key: "Test2", label: "(Test2) Test Label 2"}
+                    {key: "1", label: "(1) Test Label"},
+                    {key: "2", label: "(2) Test Label 2"}
                 ];
 
                 $scope.list2 = [
-                    {key: "TestA", label: "(TestA) Test Label A"},
-                    {key: "TestB", label: "(TestB) Test Label B"}
+                    {key: "10", label: "(10) Test Label A"},
+                    {key: "20", label: "(20) Test Label B"}
                 ];
 
-                $scope.select = {};
+                $scope.onSelectChanged = function (selectedValue) {
+                    console.log('onSelectChanged, selected value: ', selectedValue, ' and in scope: ', $scope.selectedValue);
+                    $scope.afterSelect = "New selection for first SelectBox: " + selectedValue;
+                };
 
-                $scope.onSelectChanged = function () {
-                    console.log('onSelectChanged, current scope:', $scope);
-                    // Why the heck do I still get previous value printed????
-                    //console.log('onSelectChanged, current selections: ', $scope.selectedValue, ' ', $scope.selectedValue2);
+                $scope.onSelect2Changed = function () {
+                    //console.log('onSelect2Changed, current scope:', $scope);
+                    $scope.afterSelect = "New selection for second SelectBox: " + $scope.selectedValue2;
                 };
 
                 $scope.resetSelectBox = function () {
@@ -64,8 +76,8 @@
                 };
 
                 $scope.selectFirstItems = function () {
-                    $scope.selectedValue = 'Test';
-                    $scope.selectedValue2 = 'TestA';
+                    $scope.selectedValue = '1';
+                    $scope.selectedValue2 = '10';
                 };
             });
 </script>

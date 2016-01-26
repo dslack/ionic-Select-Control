@@ -22,7 +22,7 @@
                 ngData: "@",
                 ngPlaceholder: "@",
                 ngHeaderClass: "@",
-                ngSelectChanged: "@"
+                ngSelectChanged: "&"
             },
             controller: ['$scope', '$element', '$ionicModal', '$parse', function ($scope, $element, $ionicModal, $parse) {
 
@@ -43,6 +43,7 @@
                 };
 
                 $scope.$on('$destroy', function (id) {
+                    console.log('destroying scope');
                     if($scope.modal)
                         $scope.modal.remove();
                 });
@@ -79,7 +80,7 @@
                     $scope.ngSelectedValue = item[$scope.ngItemId];
                     $scope.label = item[$scope.ngItemName];
                     $scope.closeSelectModal();
-                    $scope.$parent.$eval($scope.ngSelectChanged);
+                    $scope.ngSelectChanged($scope.ngSelectedValue);
                 };
 
                 $scope.setPlaceholderLabel = function(label) {
@@ -87,6 +88,7 @@
                 };
 
                 $scope.$on('reset', function(){
+                    console.log('resetting scope');
                     $scope.setPlaceholderLabel($scope.ngPlaceholder);
                     $scope.ngSelectedValue = null;
                 });
