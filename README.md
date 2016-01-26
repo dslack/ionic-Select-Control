@@ -1,6 +1,8 @@
 ionic-Select-Control
 ====================
 
+## Sorry version 1.5.0 needs bug fix, selected value is wrong, please use 1.4.0 for now.
+
 ## Description
 
 This is a customizable select box for ionic framework.
