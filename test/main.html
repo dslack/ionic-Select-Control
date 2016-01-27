@@ -27,22 +27,22 @@
 <br/>
 <br/>
 
-<select-box ng-Selected-Value="selectedValue2"
-            ng-Item-Name="label"
-            ng-Item-Id="key"
-            ng-title="List 2"
-            ng-data="list2"
-            ng-placeholder="Select2"
-            ng-header-class="bar-positive"
-            ng-select-changed="onSelect2Changed()"
-></select-box> Selected value :
-<input id="secondSelection" name="secondSelection" ng-model = "selectedValue2"/>
+<!--<select-box ng-Selected-Value="selectedValue2"-->
+            <!--ng-Item-Name="label"-->
+            <!--ng-Item-Id="key"-->
+            <!--ng-title="List 2"-->
+            <!--ng-data="list2"-->
+            <!--ng-placeholder="Select2"-->
+            <!--ng-header-class="bar-positive"-->
+            <!--ng-select-changed="onSelect2Changed()"-->
+<!--&gt;</select-box> Selected value :-->
+<!--<input id="secondSelection" name="secondSelection" ng-model = "selectedValue2"/>-->
 
 <br/>
 <br/>
 <input id="chat" name="chat" ng-model="afterSelect" style="width:300px"/>
-<br/>
-<input id="chat2" name="chat2" ng-model="afterSelect2" style="width:300px"/>
+<!--<br/>-->
+<!--<input id="chat2" name="chat2" ng-model="afterSelect2" style="width:300px"/>-->
 
 <br/>
 <br/>
@@ -67,10 +67,10 @@
                     $scope.afterSelect = "New selection for first SelectBox: " + selectedValue;
                 };
 
-                $scope.onSelect2Changed = function () {
-                    //console.log('onSelect2Changed, current scope:', $scope);
-                    $scope.afterSelect2 = "New selection for second SelectBox: " + $scope.selectedValue2;
-                };
+//                $scope.onSelect2Changed = function () {
+//                    //console.log('onSelect2Changed, current scope:', $scope);
+//                    $scope.afterSelect2 = "New selection for second SelectBox: " + $scope.selectedValue2;
+//                };
 
                 $scope.resetSelectBox = function () {
                     $scope.selectedValue = null;

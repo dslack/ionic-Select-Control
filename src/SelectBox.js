@@ -22,7 +22,7 @@
                 ngData: "@",
                 ngPlaceholder: "@",
                 ngHeaderClass: "@",
-                ngSelectChanged: "="
+                ngSelectChanged: "&"
             },
             controller: ['$scope', '$element', '$ionicModal', '$parse', function ($scope, $element, $ionicModal, $parse) {
 
@@ -80,7 +80,8 @@
                     $scope.ngSelectedValue = item[$scope.ngItemId];
                     $scope.label = item[$scope.ngItemName];
                     $scope.closeSelectModal();
-                    $scope.ngSelectChanged($scope.ngSelectedValue);
+                    console.log($scope);
+                    $scope.ngSelectChanged({selectedValue: $scope.ngSelectedValue});
                 };
 
                 $scope.setPlaceholderLabel = function(label) {
