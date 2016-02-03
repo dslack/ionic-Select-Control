@@ -1,8 +1,6 @@
 ionic-Select-Control
 ====================
 
-## Sorry version 1.5.0 needs bug fix, selected value is wrong, please use 1.4.0 for now.
-
 ## Description
 
 This is a customizable select box for ionic framework.
@@ -42,19 +40,19 @@ angular.module('myApp', ['ionic', '$selectBox'])
           		ng-title="Select something!" 
           		ng-data="mySelectedValue" 
           		ng-placeholder="nothing selected!"
-          		ng-select-changed="displaySelectedValue()"></select-box>
+          		ng-select-changed="doSomethingWithSelectedValue(selectedValue)"></select-box>
 ```
  
 ### Directive parameters
-| Name  | Description |
-| :------------- | :------------- |
-|ng-Selected-Value|Variable from scope that will get populated with selected option value|
-|ng-data|Scope object passed to SelectBox, format: list of object with two properties, one for label, one for value|
-|ng-Item-Name|Name of property for label, in scope object passed to SelectBox|
-|ng-Item-Id|Name of property for value, in scope object passed to SelectBox|
-|ng-placeholder|Placeholder string when no value is selected|
-|ng-title|Title of SelectBox|
-|ng-select-changed|Optional JS function to execute after item selection|
+| Name | Description |Remark |
+| :------------- | :------------- | :------------- |
+|ng-Selected-Value|Variable from scope that will get populated with selected option value|Required. <br> Updated using two-way binding.|
+|ng-data|Scope object passed to SelectBox, format: list of object with two properties, one for label, one for value|Required.|
+|ng-Item-Name|Name of property for label, in scope object passed to SelectBox|Required.|
+|ng-Item-Id|Name of property for value, in scope object passed to SelectBox|Required.|
+|ng-placeholder|Placeholder string when no value is selected|Required.|
+|ng-title|Title of SelectBox|Required.|
+|ng-select-changed|JS function to execute after item selection.|Optional. <br> This function argument name should be 'selectedValue', both in your controller function declaration and in SelectBox ng-select-changed attribute value (function call).|
  
  
  **Example of object for ng-data:**
@@ -74,8 +72,9 @@ Used libraries (ionic bundle, angular translate) are stored in "lib" root folder
 
 ## History
 
-### Version 1.5.0:
+### Version 1.5.2:
 - Added ability to clear selection when setting null value to scope object associated to "ng-Selected-Value" selectBox attribute.
+- Regression fixed in 1.5.2, don't use 1.5.0.
 
 ### Version 1.4.0:
 - Added Gulp tasks to minify and uglify source and stylesheet.
@@ -92,11 +91,9 @@ Used libraries (ionic bundle, angular translate) are stored in "lib" root folder
 - Readme fix and improvement.
 
 ### Versions 1.0.1 and 1.0.2:
-
 - MIT license added + Readme fix.
  
 ### Version 1.0.0:
- 
  - Addition of ng-select-changed attribute to hook a function to handle selected value. (postb99 new fork, from dslack fork).
  - Added Header class support to better integrate with apps (dslack fork).
  

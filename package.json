@@ -1,6 +1,6 @@
 {
   "name": "ionic-select-control",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "Skinnable select control for Ionic framework",
   "main": "index.js",
   "directories": {
@@ -32,7 +32,6 @@
     "gulp-cssnano": "^2.1.0",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^1.5.1",
-    "ionic": "driftyco/ionic-bower#1.1.0"
+    "gulp-uglify": "^1.5.1"
   }
 }

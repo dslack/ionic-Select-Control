@@ -14,6 +14,7 @@
 
 </head>
 <body ng-controller="MyCtrl">
+<!-- ng-select-changed should be declared with 'selectedValue' argument name. -->
 <select-box ng-Selected-Value="selectedValue"
             ng-Item-Name="label"
             ng-Item-Id="key"
@@ -27,22 +28,36 @@
 <br/>
 <br/>
 
-<!--<select-box ng-Selected-Value="selectedValue2"-->
-            <!--ng-Item-Name="label"-->
-            <!--ng-Item-Id="key"-->
-            <!--ng-title="List 2"-->
-            <!--ng-data="list2"-->
-            <!--ng-placeholder="Select2"-->
-            <!--ng-header-class="bar-positive"-->
-            <!--ng-select-changed="onSelect2Changed()"-->
-<!--&gt;</select-box> Selected value :-->
-<!--<input id="secondSelection" name="secondSelection" ng-model = "selectedValue2"/>-->
+<select-box ng-Selected-Value="selectedValue2"
+            ng-Item-Name="label"
+            ng-Item-Id="key"
+            ng-title="List 2"
+            ng-data="list2"
+            ng-placeholder="Select2"
+            ng-header-class="bar-positive"
+            ng-select-changed="onSelect2Changed(selectedValue)"
+></select-box> Selected value :
+<input id="secondSelection" name="secondSelection" ng-model = "selectedValue2"/>
+
+<br/>
+<br/>
+Without ng-select-changed function:
+<select-box ng-Selected-Value="selectedValue3"
+            ng-Item-Name="label"
+            ng-Item-Id="key"
+            ng-title="List 2"
+            ng-data="list2"
+            ng-placeholder="Select3"
+            ng-header-class="bar-positive"
+></select-box> Selected value :
+<input id="thirdSelection" name="thirdSelection" ng-model = "selectedValue3"/>
 
 <br/>
 <br/>
 <input id="chat" name="chat" ng-model="afterSelect" style="width:300px"/>
-<!--<br/>-->
-<!--<input id="chat2" name="chat2" ng-model="afterSelect2" style="width:300px"/>-->
+<br/>
+<br/>
+<input id="chat2" name="chat2" ng-model="afterSelect2" style="width:300px"/>
 
 <br/>
 <br/>
@@ -62,24 +77,35 @@
                     {key: "20", label: "(20) Test Label B"}
                 ];
 
+                /**
+                 * To be correctly called by directive, this function argument name should be 'selectedValue'.
+                 * The selected value will be assigned to this parameter only but not to current scope in this very own function.
+                 * @param selectedValue
+                 */
                 $scope.onSelectChanged = function (selectedValue) {
-                    console.log('onSelectChanged, selected value: ', selectedValue, ' and in scope: ', $scope.selectedValue);
+                    console.log('onSelectChanged, selected value: ', selectedValue, ' and in scope previous value it seems: ', $scope.selectedValue);
                     $scope.afterSelect = "New selection for first SelectBox: " + selectedValue;
                 };
 
-//                $scope.onSelect2Changed = function () {
-//                    //console.log('onSelect2Changed, current scope:', $scope);
-//                    $scope.afterSelect2 = "New selection for second SelectBox: " + $scope.selectedValue2;
-//                };
+                /**
+                 * To be correctly called by directive, this function argument name should be 'selectedValue'.
+                 * The selected value will be assigned to this parameter only but not to current scope in this very own function.
+                 * @param selectedValue
+                 */
+                $scope.onSelect2Changed = function (selectedValue) {
+                    $scope.afterSelect2 = "New selection for second SelectBox: " + selectedValue;
+                };
 
                 $scope.resetSelectBox = function () {
                     $scope.selectedValue = null;
                     $scope.selectedValue2 = null;
+                    $scope.selectedValue3 = null;
                 };
 
                 $scope.selectFirstItems = function () {
                     $scope.selectedValue = '1';
                     $scope.selectedValue2 = '10';
+                    $scope.selectedValue3 = '10';
                 };
             });
 </script>

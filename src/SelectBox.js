@@ -43,7 +43,6 @@
                 };
 
                 $scope.$on('$destroy', function (id) {
-                    console.log('destroying scope');
                     if($scope.modal)
                         $scope.modal.remove();
                 });
@@ -80,7 +79,6 @@
                     $scope.ngSelectedValue = item[$scope.ngItemId];
                     $scope.label = item[$scope.ngItemName];
                     $scope.closeSelectModal();
-                    console.log($scope);
                     $scope.ngSelectChanged({selectedValue: $scope.ngSelectedValue});
                 };
 
@@ -89,7 +87,6 @@
                 };
 
                 $scope.$on('reset', function(){
-                    console.log('resetting scope');
                     $scope.setPlaceholderLabel($scope.ngPlaceholder);
                     $scope.ngSelectedValue = null;
                 });
