@@ -52,9 +52,19 @@
                 });
 
                 $scope.$watch('ngSelectedValue', function (newValue, oldValue) {
-                    //console.log('selected value changed from ', oldValue, ' to ', newValue);
-                    if(!newValue)
-                        $scope.setPlaceholderLabel($scope.ngPlaceholder);
+                  //console.log('selected value changed from ', oldValue, ' to ', newValue);
+                 if(undefined != newValue) {
+                   var val = $parse($scope.ngData);
+                   $scope.ngDataObjects = val($scope.$parent);
+                   var i=0, len=$scope.ngDataObjects.length;
+                   for (; i<len; i++) {
+                     if ($scope.ngDataObjects[i][$scope.ngItemId] == newValue) {
+                       //console.log('found descr for ', newValue, ' = ',$scope.ngDataObjects[i][$scope.ngItemName]);
+                       $scope.setPlaceholderLabel($scope.ngDataObjects[i][$scope.ngItemName]);
+                     }
+                   }
+                   } else
+                     $scope.setPlaceholderLabel($scope.ngPlaceholder);
                 });
 
                 $scope.renderModal = function () {
