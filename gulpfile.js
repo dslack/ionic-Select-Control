@@ -3,7 +3,6 @@ var cssnano = require('gulp-cssnano');
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
-var mainBowerFiles = require('main-bower-files');
 
 gulp.task('default', ['minify-javascript', 'minify-css']);
 
@@ -28,12 +27,3 @@ gulp.task('minify-css', function (done) {
         .pipe(gulp.dest('./dist/'))
         .on('end', done);
 });
-
-gulp.task('test-main-bower-files', function(done) {
-    var files = mainBowerFiles();
-    console.log(files);
-    gulp.src(files, { base: './bower_components' })
-        .pipe('./dist/test/')
-        .on('end', done);
-});
-
