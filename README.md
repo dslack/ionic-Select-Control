@@ -23,12 +23,12 @@ Clicking outside the modal won't close it.
 angular.module('myApp', ['ionic', '$selectBox'])
 ```
 
-3. Include necessary files in your index.html header:
+3. Include necessary files in your index.html header, for example linking directly to files where bower component was installed:
 
 ```HTML
-   <link href="lib/selectbox/css/SelectBox.css" rel="stylesheet">
+   <link rel="stylesheet" href="lib/ionic-select-control/dist/SelectBox.min.css" >
 
-   <script type="text/javascript" src="lib/selectbox/SelectBox.js"></script>
+   <script type="text/javascript" src="lib/ionic-select-control/dist/SelectBox.min.js"></script>
 ```
 
 4. Use the select-box directive:
@@ -72,33 +72,39 @@ Used libraries (ionic bundle, angular translate) are stored in "lib" root folder
 
 ## History
 
-### Version 1.5.3:
-- Tentatively added support for main-bower-files.
+### Version 1.6.0
+- Added support for external change value (thanks to Ivo Mans).
+- Improved Readme.
 
-### Version 1.5.2:
+### Version 1.5.3
+- Added a "main" section in bower.json (support for main-bower-files gulp plugin).
+
+### Version 1.5.2
 - Added ability to clear selection when setting null value to scope object associated to "ng-Selected-Value" selectBox attribute.
-- Regression fixed in 1.5.2, don't use 1.5.0.
+- Regression in version 1.5.0 fixed in 1.5.2, please don't use 1.5.0.
 
-### Version 1.4.0:
+### Version 1.4.0
 - Added Gulp tasks to minify and uglify source and stylesheet.
 
-### Version 1.3.0:
+### Version 1.3.0
 - Disallow modal closing when clicking outside the modal.
 
-### Version 1.2.0:
+### Version 1.2.0
 - Fixed javascript error when destroying scope without opening modal ($scope.modal undefined).
 
-### Version 1.1.0:
+### Version 1.1.0
 - Component properly refreshes when scope changes.
 - Test pages reworked.
 - Readme fix and improvement.
 
-### Versions 1.0.1 and 1.0.2:
+### Versions 1.0.1 and 1.0.2
 - MIT license added + Readme fix.
  
-### Version 1.0.0:
+### Version 1.0.0
  - Addition of ng-select-changed attribute to hook a function to handle selected value. (postb99 new fork, from dslack fork).
  - Added Header class support to better integrate with apps (dslack fork).
  
-Original project Codepen
-http://codepen.io/domiSchenk/pen/cvDkt
+## Contributors
+- Project creator: [domiSchenk](https://github.com/domiSchenk)
+- Fork and current maintainer: [postb99@OSAMES](https://github.com/postb99)
+- Pull requests: [ivomans](https://github.com/ivomans)
