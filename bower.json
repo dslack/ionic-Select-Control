@@ -2,7 +2,11 @@
   "name": "ionic-select-control",
   "version": "1.5.3",
   "description": "Skinnable select control for Ionic framework",
-  "main": "index.js",
+  "main": [
+    "./dist/SelectBox.min.js",
+    "./dist/SelectBox.min.js.map",
+    "./dist/SelectBox.min.css"
+  ],
   "author": {
 	"name": "OSAMES",
 	"url": "https://github.com/OSAMES/ionic-Select-Control"
