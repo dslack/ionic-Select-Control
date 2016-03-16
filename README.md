@@ -72,6 +72,9 @@ Used libraries (ionic bundle, angular translate) are stored in "lib" root folder
 
 ## History
 
+### Version 1.5.3:
+- Tentatively added support for main-bower-files.
+
 ### Version 1.5.2:
 - Added ability to clear selection when setting null value to scope object associated to "ng-Selected-Value" selectBox attribute.
 - Regression fixed in 1.5.2, don't use 1.5.0.

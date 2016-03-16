@@ -1,8 +1,12 @@
 {
   "name": "ionic-select-control",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "Skinnable select control for Ionic framework",
-  "main": "index.js",
+  "main": [
+    "./dist/SelectBox.min.js",
+    "./dist/SelectBox.min.js.map",
+    "./dist/SelectBox.min.css"
+  ],
   "directories": {
     "test": "test"
   },
@@ -28,10 +32,11 @@
   },
   "homepage": "https://github.com/OSAMES/ionic-Select-Control#readme",
   "devDependencies": {
-    "gulp": "^3.9.0",
-    "gulp-cssnano": "^2.1.0",
+    "gulp": "^3.9.1",
+    "gulp-cssnano": "^2.1.1",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^1.5.1"
+    "gulp-uglify": "^1.5.3",
+    "main-bower-files": "^2.11.1"
   }
 }
