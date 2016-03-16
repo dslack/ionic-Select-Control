@@ -72,6 +72,9 @@ Used libraries (ionic bundle, angular translate) are stored in "lib" root folder
 
 ## History
 
+### Version 1.6.1
+- Fixed "main" section in bower.json.
+
 ### Version 1.6.0
 - Added support for external change value (thanks to Ivo Mans).
 - Improved Readme.
