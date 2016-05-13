@@ -2,7 +2,7 @@
 
     var _template = [
         "<div class='selectBox' ng-click='showSelectModal()'>",
-        "<span class='selected'>{{label}}</span>",
+        "<span class='selected {{ngPlaceholderClass}}'>{{label}}</span>",
         "<span class='selectArrow'>&#9660</span>",
         "<input type='hidden'/>",
         "</div>"
@@ -22,12 +22,14 @@
                 ngData: "@",
                 ngPlaceholder: "@",
                 ngHeaderClass: "@",
-                ngSelectChanged: "&"
+                ngSelectChanged: "&",
+                ngPlaceholderClass: "@",
             },
             controller: ['$scope', '$element', '$ionicModal', '$parse', function ($scope, $element, $ionicModal, $parse) {
 
                 $scope.ngPlaceholder = ($scope.ngPlaceholder) ? $scope.ngPlaceholder : '';
                 $scope.label = $scope.ngPlaceholder;
+                $scope.ngPlaceholderClass = ($scope.ngPlaceholderClass) ? $scope.ngPlaceholderClass : '';
 
                 $scope.showSelectModal = function () {
                     var val = $parse($scope.ngData);

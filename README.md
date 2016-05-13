@@ -40,7 +40,11 @@ angular.module('myApp', ['ionic', '$selectBox'])
           		ng-title="Select something!" 
           		ng-data="mySelectedValue" 
           		ng-placeholder="nothing selected!"
-          		ng-select-changed="doSomethingWithSelectedValue(selectedValue)"></select-box>
+          		ng-select-changed="doSomethingWithSelectedValue(selectedValue)"
+          		ng-placeholder-class="myPlaceholderStyle"
+          		>
+
+</select-box>
 ```
  
 ### Directive parameters
@@ -53,7 +57,7 @@ angular.module('myApp', ['ionic', '$selectBox'])
 |ng-placeholder|Placeholder string when no value is selected|Required.|
 |ng-title|Title of SelectBox|Required.|
 |ng-select-changed|JS function to execute after item selection.|Optional. <br> This function argument name should be 'selectedValue', both in your controller function declaration and in SelectBox ng-select-changed attribute value (function call).|
- 
+ |ng-placeholder-class|CSS class to apply to placeholder|Optional.|
  
  **Example of object for ng-data:**
  ```javascript
@@ -71,6 +75,9 @@ In "test" root folder, there are some html test pages with different configurati
 Used libraries (ionic bundle, angular translate) are stored in "lib" root folder.
 
 ## History
+
+### Version 1.7.0
+- Added placeholder styling option.
 
 ### Version 1.6.1
 - Fixed "main" section in bower.json.
