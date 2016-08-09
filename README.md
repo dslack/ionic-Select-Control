@@ -57,7 +57,8 @@ angular.module('myApp', ['ionic', '$selectBox'])
 |ng-placeholder|Placeholder string when no value is selected|Required.|
 |ng-title|Title of SelectBox|Required.|
 |ng-select-changed|JS function to execute after item selection.|Optional. <br> This function argument name should be 'selectedValue', both in your controller function declaration and in SelectBox ng-select-changed attribute value (function call).|
- |ng-placeholder-class|CSS class to apply to placeholder|Optional.|
+|ng-placeholder-class|CSS class to apply to placeholder|Optional.|
+|ng-select-box-class|CSS class to apply to whole select box control|Optional.|
  
  **Example of object for ng-data:**
  ```javascript
@@ -71,10 +72,14 @@ var obj = [
 
 ## Tests
 
-In "test" root folder, there are some html test pages with different configurations. They don't require a web server to be opened, thus are kept basic.
+In "test" root folder, there are some html test pages with different configurations, stylings. 
+They don't require a web server to be opened, thus are kept basic.
 Used libraries (ionic bundle, angular translate) are stored in "lib" root folder.
 
 ## History
+
+### Version 1.8.0
+- Added whole component styling option.
 
 ### Version 1.7.0
 - Added placeholder styling option.

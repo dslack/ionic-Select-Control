@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>Two select box on a page</title>
+    <title>Some select boxes! Minified version</title>
     <link href="../lib/ionic-bundle/css/ionic.min.css" rel="stylesheet">
     <link href="../dist/SelectBox.min.css" rel="stylesheet">
     <!-- ionic/angularjs js -->
@@ -11,17 +11,21 @@
     <script src="../lib/angular-translate/angular-translate.min.js"></script>
 
     <script src="../dist/SelectBox.min.js"></script>
-
     <style>
         .customPlaceholder {
             background-color: #4d4d4d;
             color: whitesmoke;
             width: 200px;
         }
+
+        .fancySelectBox {
+            margin-top: 50px;
+        }
     </style>
 
 </head>
 <body ng-controller="MyCtrl">
+<h1>Some select boxes</h1>
 <!-- ng-select-changed should be declared with 'selectedValue' argument name. -->
 <select-box ng-Selected-Value="selectedValue"
             ng-Item-Name="label"
@@ -49,7 +53,7 @@
 
 <br/>
 <br/>
-Without ng-select-changed function:
+<div>Without ng-select-changed function</div>
 <select-box ng-Selected-Value="selectedValue3"
             ng-Item-Name="label"
             ng-Item-Id="key"
@@ -71,10 +75,11 @@ Without ng-select-changed function:
 <br/>
 <input type="button" ng-click="resetSelectBox()" value="Reset selections above">&nbsp;
 <input type="button" ng-click="selectFirstItems()" value="Select first item of each select box above">
-
 <br/>
 <br/>
 
+<h1>Styling</h1>
+<h2>Placeholder style</h2>
 <select-box ng-Selected-Value="selectedValue4"
             ng-Item-Name="label"
             ng-Item-Id="key"
@@ -86,6 +91,21 @@ Without ng-select-changed function:
             ng-placeholder-class="customPlaceholder"
 ></select-box> Selected value :
 <input id="fourthSelection" name="fourthSelection" ng-model = "selectedValue4"/>
+<br/>
+<br/>
+<h2>Whole control style</h2>
+<div>With 50px top margin</div>
+<select-box ng-Selected-Value="selectedValue5"
+            ng-Item-Name="label"
+            ng-Item-Id="key"
+            ng-title="List 1"
+            ng-data="list"
+            ng-placeholder="Select something"
+            ng-header-class="bar-calm"
+            ng-select-changed="onSelectChanged(selectedValue)"
+            ng-select-box-class="fancySelectBox"
+></select-box> Selected value :
+<input id="fifthSelection" name="fifthSelection" ng-model = "selectedValue5"/>
 <br/>
 <br/>
 
