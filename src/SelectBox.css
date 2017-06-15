@@ -43,3 +43,7 @@ select-box span.selectArrow,span.selected {
     height:30px;
     z-index:1;
 }
+
+.popup-open.modal-open .modal .ionic-select-enable, .ionic-select-enable { 
+  pointer-events: auto;
+}

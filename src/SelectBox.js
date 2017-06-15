@@ -38,7 +38,9 @@
                     $scope.ngDataObjects = val($scope.$parent);
                     $scope.ngHeaderClass = ($scope.ngHeaderClass) ? $scope.ngHeaderClass : "";
                     $scope.renderModal();
-                    $scope.modal.show();
+                    $scope.modal.show().then(function(modal) {
+                      $scope.modal.el.style.zIndex = 99;
+                    });
                 };
 
                 $scope.closeSelectModal = function () {
@@ -72,14 +74,14 @@
                 });
 
                 $scope.renderModal = function () {
-                    $scope.modal = $ionicModal.fromTemplate('<ion-modal-view id="select">'
+                    $scope.modal = $ionicModal.fromTemplate('<ion-modal-view id="select" class="ionic-select-enable">'
                         + '<ion-header-bar class="' + $scope.ngHeaderClass + '">'
                         + '<h1 class="title">' + $scope.ngTitle + '</h1>'
-                        + ' <a ng-click="closeSelectModal()" class="button button-icon icon ion-close"></a>'
+                        + ' <a ng-click="closeSelectModal()" class="button button-icon icon ion-close ionic-select-enable"></a>'
                         + '</ion-header-bar>'
                         + '<ion-content>'
-                        + '<ion-list>'
-                        + '<ion-item  ng-click="clickItem(item);' + '" ng-repeat="item in ngDataObjects" ng-bind-html="item[\'' + $scope.ngItemName + '\']"></ion-item>'
+                        + '<ion-list class="ionic-select-enable">'
+                        + '<ion-item class="ionic-select-enable" ng-click="clickItem(item);' + '" ng-repeat="item in ngDataObjects" ng-bind-html="item[\'' + $scope.ngItemName + '\']"></ion-item>'
                         + '</ion-list>'
                         + ' </ion-content>'
                         + '</ion-modal-view>', {

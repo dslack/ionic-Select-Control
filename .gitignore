@@ -39,3 +39,6 @@ Icon
 
 # Node modules
 /node_modules
+
+# Generated stuff
+package-lock.json
