@@ -66,7 +66,7 @@ var obj = [
   {label: "Value1", id:"1"},
   {label: "Value2", id:"2"},
   {label: "Value3", id:"3"},
-  {label: "Value4", id:"4"},
+  {label: "Value4", id:"4"}
 ]
  ```
 
@@ -77,6 +77,9 @@ They don't require a web server to be opened, thus are kept basic.
 Used libraries (ionic bundle, angular translate) are stored in "lib" root folder.
 
 ## History
+
+### Version 1.8.1
+- Merged pull request "Make sure it works from a popup, popover, modal".
 
 ### Version 1.8.0
 - Added whole component styling option.
