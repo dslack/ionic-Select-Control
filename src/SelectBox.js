@@ -4,7 +4,7 @@
         "<div class='selectBox {{ngSelectBoxClass}}' ng-click='showSelectModal()'>",
         "<span class='selected {{ngPlaceholderClass}}'>{{label}}</span>",
         "<span class='selectArrow'>&#9660</span>",
-        "<input type='hidden'/>",
+        "<input type='hidden' name='{{ngHtmlName}}'/>",
         "</div>"
     ].join("\n");
 
@@ -20,6 +20,7 @@
                 ngItemName: "@",
                 ngItemId: "@",
                 ngData: "@",
+                ngHtmlName: "@",
                 ngPlaceholder: "@",
                 ngHeaderClass: "@",
                 ngSelectChanged: "&",
