@@ -4,7 +4,7 @@
         "<div class='selectBox {{ngSelectBoxClass}}' ng-click='showSelectModal()'>",
         "<span class='selected {{ngPlaceholderClass}}'>{{label}}</span>",
         "<span class='selectArrow'>&#9660</span>",
-        "<input type='hidden' name='{{ngHtmlName}}'/>",
+        "<input type='hidden' ng-model='ngSelectedValue' name='{{ngHtmlName}}' dynamic-name ng-required='{{ngIsRequired}}'/>",
         "</div>"
     ].join("\n");
 
@@ -21,6 +21,7 @@
                 ngItemId: "@",
                 ngData: "@",
                 ngHtmlName: "@",
+                ngIsRequired: "@",
                 ngPlaceholder: "@",
                 ngHeaderClass: "@",
                 ngSelectChanged: "&",
@@ -30,6 +31,7 @@
             controller: ['$scope', '$element', '$ionicModal', '$parse', function ($scope, $element, $ionicModal, $parse) {
 
                 $scope.ngPlaceholder = ($scope.ngPlaceholder) ? $scope.ngPlaceholder : '';
+                $scope.ngIsRequired = ($scope.ngIsRequired) ? $scope.ngIsRequired : false;
                 $scope.label = $scope.ngPlaceholder;
                 $scope.ngPlaceholderClass = ($scope.ngPlaceholderClass) ? $scope.ngPlaceholderClass : '';
                 $scope.ngSelectBoxClass = ($scope.ngSelectBoxClass) ? $scope.ngSelectBoxClass : '';
@@ -40,7 +42,7 @@
                     $scope.ngHeaderClass = ($scope.ngHeaderClass) ? $scope.ngHeaderClass : "";
                     $scope.renderModal();
                     $scope.modal.show().then(function(modal) {
-                      $scope.modal.el.style.zIndex = 99;
+                        $scope.modal.el.style.zIndex = 99;
                     });
                 };
 
@@ -59,19 +61,19 @@
                 });
 
                 $scope.$watch('ngSelectedValue', function (newValue, oldValue) {
-                  //console.log('selected value changed from ', oldValue, ' to ', newValue);
-                 if(undefined != newValue) {
-                   var val = $parse($scope.ngData);
-                   $scope.ngDataObjects = val($scope.$parent);
-                   var i=0, len=$scope.ngDataObjects.length;
-                   for (; i<len; i++) {
-                     if ($scope.ngDataObjects[i][$scope.ngItemId] == newValue) {
-                       //console.log('found descr for ', newValue, ' = ',$scope.ngDataObjects[i][$scope.ngItemName]);
-                       $scope.setPlaceholderLabel($scope.ngDataObjects[i][$scope.ngItemName]);
-                     }
-                   }
-                   } else
-                     $scope.setPlaceholderLabel($scope.ngPlaceholder);
+                    //console.log('selected value changed from ', oldValue, ' to ', newValue);
+                    if(undefined != newValue) {
+                        var val = $parse($scope.ngData);
+                        $scope.ngDataObjects = val($scope.$parent);
+                        var i=0, len=$scope.ngDataObjects.length;
+                        for (; i<len; i++) {
+                            if ($scope.ngDataObjects[i][$scope.ngItemId] == newValue) {
+                                //console.log('found descr for ', newValue, ' = ',$scope.ngDataObjects[i][$scope.ngItemName]);
+                                $scope.setPlaceholderLabel($scope.ngDataObjects[i][$scope.ngItemName]);
+                            }
+                        }
+                    } else
+                        $scope.setPlaceholderLabel($scope.ngPlaceholder);
                 });
 
                 $scope.renderModal = function () {
@@ -118,6 +120,15 @@
                         input.attr(name, value);
                     }
                 });
+            }
+        };
+    }).directive('dynamicName', function() {
+        return {
+            restrict: 'A',
+            priority: -1,
+            require: ['ngModel'],
+            link: function (scope, element, attr, ngModel) {
+                ngModel[0].$name = attr.name;
             }
         };
     });
