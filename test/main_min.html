@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html ng-app="ionicApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Some select boxes! Minified version</title>
+    <link href="../lib/ionic-bundle/css/ionic.min.css" rel="stylesheet">
+    <link href="../dist/SelectBox.min.css" rel="stylesheet">
+    <!-- ionic/angularjs js -->
+    <script src="../lib/ionic-bundle/ionic.bundle.min.js"></script>
+    <script src="../lib/angular-translate/angular-translate.min.js"></script>
+
+    <script src="../dist/SelectBox.min.js"></script>
+    <style>
+        .customPlaceholder {
+            background-color: #4d4d4d;
+            color: whitesmoke;
+            width: 200px;
+        }
+
+        .fancySelectBox {
+            margin-top: 50px;
+        }
+    </style>
+
+</head>
+<body ng-controller="MyCtrl">
+<h1>Some select boxes</h1>
+<!-- ng-select-changed should be declared with 'selectedValue' argument name. -->
+<select-box ng-Selected-Value="selectedValue"
+            ng-Item-Name="label"
+            ng-Item-Id="key"
+            ng-title="List 1"
+            ng-data="list"
+            ng-placeholder="Select"
+            ng-header-class="bar-calm"
+            ng-select-changed="onSelectChanged(selectedValue)"
+></select-box> Selected value :
+<input id="firstSelection" name="firstSelection" ng-model = "selectedValue"/>
+<br/>
+<br/>
+
+<select-box ng-Selected-Value="selectedValue2"
+            ng-Item-Name="label"
+            ng-Item-Id="key"
+            ng-title="List 2"
+            ng-data="list2"
+            ng-placeholder="Select2"
+            ng-header-class="bar-positive"
+            ng-select-changed="onSelect2Changed(selectedValue)"
+></select-box> Selected value :
+<input id="secondSelection" name="secondSelection" ng-model = "selectedValue2"/>
+
+<br/>
+<br/>
+<div>Without ng-select-changed function</div>
+<select-box ng-Selected-Value="selectedValue3"
+            ng-Item-Name="label"
+            ng-Item-Id="key"
+            ng-title="List 2"
+            ng-data="list2"
+            ng-placeholder="Select3"
+            ng-header-class="bar-positive"
+></select-box> Selected value :
+<input id="thirdSelection" name="thirdSelection" ng-model = "selectedValue3"/>
+
+<br/>
+<br/>
+<input id="chat" name="chat" ng-model="afterSelect" style="width:300px"/>
+<br/>
+<br/>
+<input id="chat2" name="chat2" ng-model="afterSelect2" style="width:300px"/>
+
+<br/>
+<br/>
+<input type="button" ng-click="resetSelectBox()" value="Reset selections above">&nbsp;
+<input type="button" ng-click="selectFirstItems()" value="Select first item of each select box above">
+<br/>
+<br/>
+
+<h1>Styling</h1>
+<h2>Placeholder style</h2>
+<select-box ng-Selected-Value="selectedValue4"
+            ng-Item-Name="label"
+            ng-Item-Id="key"
+            ng-title="List 1"
+            ng-data="list"
+            ng-placeholder="Select something styled !"
+            ng-header-class="bar-calm"
+            ng-select-changed="onSelectChanged(selectedValue)"
+            ng-placeholder-class="customPlaceholder"
+></select-box> Selected value :
+<input id="fourthSelection" name="fourthSelection" ng-model = "selectedValue4"/>
+<br/>
+<br/>
+<h2>Whole control style</h2>
+<div>With 50px top margin</div>
+<select-box ng-Selected-Value="selectedValue5"
+            ng-Item-Name="label"
+            ng-Item-Id="key"
+            ng-title="List 1"
+            ng-data="list"
+            ng-placeholder="Select something"
+            ng-header-class="bar-calm"
+            ng-select-changed="onSelectChanged(selectedValue)"
+            ng-select-box-class="fancySelectBox"
+></select-box> Selected value :
+<input id="fifthSelection" name="fifthSelection" ng-model = "selectedValue5"/>
+<br/>
+<br/>
+
+<script>
+    angular.module('ionicApp', ['ionic', '$selectBox'])
+            .controller('MyCtrl', function ($scope) {
+                $scope.list = [
+                    {key: "1", label: "(1) Test Label"},
+                    {key: "2", label: "(2) Test Label 2"}
+                ];
+
+                $scope.list2 = [
+                    {key: "10", label: "(10) Test Label A"},
+                    {key: "20", label: "(20) Test Label B"}
+                ];
+
+                /**
+                 * To be correctly called by directive, this function argument name should be 'selectedValue'.
+                 * The selected value will be assigned to this parameter only but not to current scope in this very own function.
+                 * @param selectedValue
+                 */
+                $scope.onSelectChanged = function (selectedValue) {
+                    console.log('onSelectChanged, selected value: ', selectedValue, ' and in scope previous value it seems: ', $scope.selectedValue);
+                    $scope.afterSelect = "New selection for first SelectBox: " + selectedValue;
+                };
+
+                /**
+                 * To be correctly called by directive, this function argument name should be 'selectedValue'.
+                 * The selected value will be assigned to this parameter only but not to current scope in this very own function.
+                 * @param selectedValue
+                 */
+                $scope.onSelect2Changed = function (selectedValue) {
+                    $scope.afterSelect2 = "New selection for second SelectBox: " + selectedValue;
+                };
+
+                $scope.resetSelectBox = function () {
+                    $scope.selectedValue = null;
+                    $scope.selectedValue2 = null;
+                    $scope.selectedValue3 = null;
+                };
+
+                $scope.selectFirstItems = function () {
+                    $scope.selectedValue = '1';
+                    $scope.selectedValue2 = '10';
+                    $scope.selectedValue3 = '10';
+                };
+            });
+</script>
+</body>
+</html>
